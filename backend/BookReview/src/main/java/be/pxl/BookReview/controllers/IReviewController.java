@@ -1,14 +1,13 @@
-package be.pxl.BookReview.controllers;
+package be.pxl.bookreview.controllers;
 
-import be.pxl.BookReview.models.Book;
-import be.pxl.BookReview.models.Review;
+import be.pxl.bookreview.models.Review;
 
 import java.util.List;
 
 public interface IReviewController {
-    Review createReview(Review review);
+    Review createReview(Review person);
     Review getReview(int id);
-    Review editReview(Review review);
+    Review editReview(Review person);
     List getAllReviews();
 
 }

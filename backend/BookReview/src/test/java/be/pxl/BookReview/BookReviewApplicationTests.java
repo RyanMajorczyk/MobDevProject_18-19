@@ -1,4 +1,4 @@
-package be.pxl.BookReview;
+package be.pxl.bookreview;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;

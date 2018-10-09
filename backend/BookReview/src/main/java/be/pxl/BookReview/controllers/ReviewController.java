@@ -1,7 +1,7 @@
-package be.pxl.BookReview.controllers;
+package be.pxl.bookreview.controllers;
 
-import be.pxl.BookReview.models.Review;
-import be.pxl.BookReview.repository.IReviewRepository;
+import be.pxl.bookreview.models.Review;
+import be.pxl.bookreview.repository.IReviewRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
@@ -18,19 +18,20 @@ public class ReviewController implements IReviewController {
         this.reviewRepository = reviewRepository;
     }
 
+
     @Override
-    public Review createReview(Review review) {
-        return reviewRepository.save(review);
+    public Review createReview(Review person) {
+        return reviewRepository.save(person);
     }
 
     @Override
     public Review getReview(int id) {
-        return reviewRepository.getOne((long) id);
+        return reviewRepository.getOne(id);
     }
 
     @Override
-    public Review editReview(Review review) {
-        return reviewRepository.save(review);
+    public Review editReview(Review person) {
+        return reviewRepository.save(person);
     }
 
     @Override

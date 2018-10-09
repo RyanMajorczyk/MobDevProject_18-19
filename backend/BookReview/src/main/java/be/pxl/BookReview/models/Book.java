@@ -1,4 +1,4 @@
-package be.pxl.BookReview.models;
+package be.pxl.bookreview.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
@@ -9,7 +9,6 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
-import java.util.Set;
 
 
 @Entity
@@ -44,7 +43,7 @@ public class Book implements Serializable {
         this.description = description;
         this.reviews = reviews;
     }
-
+    public Book() {}
     @Column(nullable = false, updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate

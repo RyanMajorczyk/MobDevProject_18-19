@@ -1,11 +1,10 @@
-package be.pxl.BookReview.repository;
+package be.pxl.bookreview.repository;
 
-import be.pxl.BookReview.models.Book;
-import be.pxl.BookReview.models.Review;
+import be.pxl.bookreview.models.Review;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository("reviewRepository")
-public interface IReviewRepository extends JpaRepository<Review, Long> {
+public interface IReviewRepository extends JpaRepository<Review, Integer> {
 
 }

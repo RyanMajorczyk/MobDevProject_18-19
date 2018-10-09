@@ -1,13 +1,15 @@
-package be.pxl.BookReview.controllers;
+package be.pxl.bookreview.controllers;
 
-import be.pxl.BookReview.models.Book;
+import be.pxl.bookreview.models.Book;
 
 import java.util.List;
+import java.util.Optional;
+
 
 public interface IBookController {
-    Book createBook(Book book);
-    Book getBook(int id);
-    Book editBook(Book book);
-    List getAllBooks();
 
+    List<Book> getAllBooks();
+    Optional<Book> getBookById(int id);
+    void addBook(Book book);
+    Book editBook(Book book);
 }

@@ -1,4 +1,4 @@
-package be.pxl.BookReview.models;
+package be.pxl.bookreview.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.springframework.data.annotation.CreatedDate;
