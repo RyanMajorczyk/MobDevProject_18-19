@@ -18,16 +18,18 @@ import java.util.Date;
 public class Review implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long reviewId;
+    private int reviewId;
 
-    @NotBlank
+    @ManyToOne
+    private Book book;
+
     private double score;
 
-    @NotBlank
     private String reviewText;
 
-    @NotBlank
     private String name;
+
+    public Review() {}
 
     public Review(@NotBlank double score, @NotBlank String reviewText, @NotBlank String name) {
         this.score = score;
@@ -35,22 +37,11 @@ public class Review implements Serializable {
         this.name = name;
     }
 
-    @Column(nullable = false, updatable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @CreatedDate
-    private Date createdAt;
-
-    @Column(nullable = false)
-    @Temporal(TemporalType.TIMESTAMP)
-    @LastModifiedDate
-    private Date updatedAt;
-
-
-    public Long getReviewId() {
+    public int getReviewId() {
         return reviewId;
     }
 
-    public void setReviewId(Long reviewId) {
+    public void setReviewId(int reviewId) {
         this.reviewId = reviewId;
     }
 
@@ -78,19 +69,5 @@ public class Review implements Serializable {
         this.name = name;
     }
 
-    public Date getCreatedAt() {
-        return createdAt;
-    }
 
-    public void setCreatedAt(Date createdAt) {
-        this.createdAt = createdAt;
-    }
-
-    public Date getUpdatedAt() {
-        return updatedAt;
-    }
-
-    public void setUpdatedAt(Date updatedAt) {
-        this.updatedAt = updatedAt;
-    }
 }

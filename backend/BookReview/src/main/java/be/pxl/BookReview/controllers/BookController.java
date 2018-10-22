@@ -5,11 +5,14 @@ import be.pxl.bookreview.repository.IBookRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.*;
 
+import javax.websocket.server.PathParam;
 import java.util.List;
 import java.util.Optional;
 
-@Service("bookController")
+@RestController
+@RequestMapping(path = "/book")
 public class BookController implements IBookController {
 
     private IBookRepository bookRepository;
@@ -20,22 +23,26 @@ public class BookController implements IBookController {
     }
 
     @Override
+    @GetMapping
     public List<Book> getAllBooks() {
         return bookRepository.findAll();
     }
 
     @Override
-    public Optional<Book> getBookById(int id) {
-        return Optional.empty();
+    @GetMapping("/{id}")
+    public Optional<Book> getBookById(@PathVariable("id") int id) {
+        return bookRepository.findById(id);
     }
 
     @Override
-    public void addBook(Book book) {
+    @PutMapping
+    public void addBook(@RequestBody Book book) {
         bookRepository.save(book);
     }
 
     @Override
-    public Book editBook(Book book) {
+    @PostMapping
+    public Book editBook(@RequestBody Book book) {
         return bookRepository.save(book);
     }
 }

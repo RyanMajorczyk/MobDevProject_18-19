@@ -5,20 +5,24 @@
 
     <group android:checkableBehavior="single">
         <item
+            android:id="@+id/home"
+
+            android:title="@string/home"/>
+        <item
             android:id="@+id/nav_addBook"
 
-            android:title="Add Book" />
+            android:title="@string/add_book" />
         <item
             android:id="@+id/nav_AddReview"
 
-            android:title="Add Review" />
+            android:title="@string/add_review" />
         <item
             android:id="@+id/nav_MyReviews"
 
-            android:title="My Reviews" />
+            android:title="@string/my_reviews" />
         <item
             android:id="@+id/nav_Settings"
-            android:title="Settings" />
+            android:title="@string/settings" />
     </group>
 
 </menu>
