@@ -6,46 +6,9 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-
-    <Button
-        android:id="@+id/button"
-        android:layout_width="150dp"
-        android:layout_height="0dp"
-        android:layout_marginBottom="52dp"
-        android:onClick="sendMessage"
-        android:text="REST GET"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:layout_marginTop="94dp"
-        android:layout_marginBottom="122dp"
-        android:text="TextView"
-        android:textAlignment="center"
-        app:layout_constraintBottom_toTopOf="@+id/button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-
-
-    <!--android.support.v4.widget.DrawerLayout android:layout_height="match_parent" android:layout_width="match_parent">
-
-        <android.support.design.widget.NavigationView
-            android:id="@+id/nav_view"
-            android:layout_width="wrap_content"
-            android:layout_height="match_parent"
-            android:layout_gravity="start"
-            android:fitsSystemWindows="true"
-            app:menu="@menu/activity_menu_drawer" >
-            <!app:headerLayout="@layout/nav_header_menu"-->
-
-        <!--/android.support.design.widget.NavigationView>
-    </android.support.v4.widget.DrawerLayout-->
+    <android.support.v7.widget.RecyclerView
+        android:layout_height="match_parent"
+        android:layout_width="match_parent"
+        android:id="@+id/recyclerview_book_list"/>
 
 </android.support.constraint.ConstraintLayout>
