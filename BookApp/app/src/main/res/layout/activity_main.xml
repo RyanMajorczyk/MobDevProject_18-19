@@ -34,7 +34,7 @@
 
 
 
-    <android.support.v4.widget.DrawerLayout android:layout_height="match_parent" android:layout_width="match_parent">
+    <!--android.support.v4.widget.DrawerLayout android:layout_height="match_parent" android:layout_width="match_parent">
 
         <android.support.design.widget.NavigationView
             android:id="@+id/nav_view"
@@ -43,9 +43,9 @@
             android:layout_gravity="start"
             android:fitsSystemWindows="true"
             app:menu="@menu/activity_menu_drawer" >
-            <!--app:headerLayout="@layout/nav_header_menu"-->
+            <!app:headerLayout="@layout/nav_header_menu"-->
 
-        </android.support.design.widget.NavigationView>
-    </android.support.v4.widget.DrawerLayout>
+        <!--/android.support.design.widget.NavigationView>
+    </android.support.v4.widget.DrawerLayout-->
 
 </android.support.constraint.ConstraintLayout>
