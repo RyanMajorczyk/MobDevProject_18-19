@@ -43,40 +43,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        BookController controller = new BookController();
+        Book book = new Book();
+        book.setAuteur("PUTTestAUthor");
+        book.setDescription("PutTestDescription");
+        book.setIsbn("PutTestISBN");
+        book.setTitle("PutTestTitle");
+        controller.addBook(book);
     }
-
-/*
-    class RESTTask extends AsyncTask<String, Void, ResponseEntity<Book>> {
-
-        //Implements method
-        protected ResponseEntity<Book> doInBackground(String... URL) {
-            final String url = URL[0];
-            RestTemplate restTemplate = new RestTemplate();
-            try {
-                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
-                HttpHeaders headers = new HttpHeaders();
-
-                HttpEntity<String> entity = new HttpEntity<>(headers);
-
-                ResponseEntity<Book> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, Book.class);
-
-                return responseEntity;
-            }
-            catch (Exception ex) {
-                return null;
-            }
-        }
-
-        protected void onPostExecute(ResponseEntity<Book> result) {
-            HttpStatus status = result.getStatusCode();
-            Book book = result.getBody();
-            TextView t = (TextView) findViewById(R.id.textView);
-            t.setText(book.toString());
-        }
-
-    }
-*/
 }
 
 

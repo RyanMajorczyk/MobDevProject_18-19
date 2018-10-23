@@ -22,15 +22,21 @@ import data.Book;
 public class BookController {
     private Book bookToGiveBack = new Book();
     private Activity activity;
+    private Book bookToAdd;
 
     public Book getBookById(int id, MainActivity mainActivity) {
-        BookController bookController = new BookController();
         final String URL = "http://81.240.220.38:8090/book/" + id;
         new BookController.RESTTask().execute(URL);
 
         activity = mainActivity;
 
         return bookToGiveBack;
+    }
+
+    public void addBook(Book book) {
+        final String URL = "http://81.240.220.38:8090/book";
+        bookToAdd = book;
+        new BookController.AddTask().execute(URL);
     }
 
     class RESTTask extends AsyncTask<String, Void, ResponseEntity<Book>> {
@@ -41,13 +47,9 @@ public class BookController {
             RestTemplate restTemplate = new RestTemplate();
             try {
                 restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-
                 HttpHeaders headers = new HttpHeaders();
-
                 HttpEntity<String> entity = new HttpEntity<>(headers);
-
                 ResponseEntity<Book> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, Book.class);
-
                 return responseEntity;
             }
             catch (Exception ex) {
@@ -58,9 +60,28 @@ public class BookController {
         protected void onPostExecute(ResponseEntity<Book> result) {
             HttpStatus status = result.getStatusCode();
             bookToGiveBack = result.getBody();
-            TextView t = (TextView) activity.findViewById(R.id.textView);
-            t.setText(bookToGiveBack.toString());
+          //  TextView t = (TextView) activity.findViewById(R.id.textView);
+          //  t.setText(bookToGiveBack.toString());
         }
 
+    }
+
+    class AddTask extends AsyncTask<String, Void, ResponseEntity<Book>> {
+        @Override
+        protected ResponseEntity<Book> doInBackground(String... URL) {
+            final String url = URL[0];
+            RestTemplate restTemplate = new RestTemplate();
+            try {
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                HttpHeaders headers = new HttpHeaders();
+
+                HttpEntity<Book> entity = new HttpEntity<>(bookToAdd, headers);
+                ResponseEntity<Book> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, entity, Book.class);
+                return responseEntity;
+            }
+            catch (Exception ex) {
+                return null;
+            }
+        }
     }
 }
