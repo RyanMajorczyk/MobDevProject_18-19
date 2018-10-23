@@ -71,7 +71,7 @@ public class MenuActivity extends AppCompatActivity
             // Handle the camera action
             startActivity(new Intent(MenuActivity.this, AddBookActivity.class));
         } else if (id == R.id.nav_AddReview) {
-
+            startActivity(new Intent(MenuActivity.this, AddReviewActivity.class));
         } else if (id == R.id.nav_MyReviews) {
 
         } else if (id == R.id.nav_Settings) {
