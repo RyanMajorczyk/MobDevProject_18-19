@@ -58,8 +58,8 @@ public class BookController {
         protected void onPostExecute(ResponseEntity<Book> result) {
             HttpStatus status = result.getStatusCode();
             bookToGiveBack = result.getBody();
-            TextView t = (TextView) activity.findViewById(R.id.textView);
-            t.setText(bookToGiveBack.toString());
+            //TextView t = (TextView) activity.findViewById(R.id.textView);
+            //t.setText(bookToGiveBack.toString());
         }
 
     }

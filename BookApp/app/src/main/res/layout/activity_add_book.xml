@@ -57,4 +57,14 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editText_author"
         app:layout_constraintTop_toBottomOf="@+id/editText_author" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="164dp"
+        android:text="Add Book"
+        app:layout_constraintEnd_toEndOf="@+id/editText_summary"
+        app:layout_constraintStart_toStartOf="@+id/editText_summary"
+        app:layout_constraintTop_toBottomOf="@+id/editText_summary" />
 </android.support.constraint.ConstraintLayout>
