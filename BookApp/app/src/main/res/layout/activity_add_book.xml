@@ -11,12 +11,13 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="172dp"
         android:layout_marginEnd="8dp"
         android:ems="10"
         android:hint="ISBN"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -24,11 +25,12 @@
         android:id="@+id/editText_title"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Title"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="@+id/editText_isbn"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editText_isbn"
         app:layout_constraintTop_toBottomOf="@+id/editText_isbn" />
 
@@ -36,35 +38,50 @@
         android:id="@+id/editText_author"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Author"
         android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="@+id/editText_title"
-        app:layout_constraintHorizontal_bias="0.503"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editText_title"
         app:layout_constraintTop_toBottomOf="@+id/editText_title" />
 
     <EditText
-        android:id="@+id/editText_summary"
+        android:id="@+id/editText_description"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
         android:ems="10"
         android:hint="Summary"
-        android:inputType="numberDecimal"
+        android:inputType="textMultiLine"
         app:layout_constraintEnd_toEndOf="@+id/editText_author"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/editText_author"
         app:layout_constraintTop_toBottomOf="@+id/editText_author" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/button_add_book"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="164dp"
+        android:layout_marginTop="32dp"
+        android:onClick="addBookClicked"
         android:text="Add Book"
-        app:layout_constraintEnd_toEndOf="@+id/editText_summary"
-        app:layout_constraintStart_toStartOf="@+id/editText_summary"
-        app:layout_constraintTop_toBottomOf="@+id/editText_summary" />
+        app:layout_constraintEnd_toEndOf="@+id/editText_description"
+        app:layout_constraintStart_toStartOf="@+id/editText_description"
+        app:layout_constraintTop_toBottomOf="@+id/editText_description" />
+
+    <ImageView
+        android:id="@+id/imageView_cover"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:clickable="true"
+        android:onClick="CameraClick"
+        android:src="@mipmap/camera_icon"
+        app:layout_constraintEnd_toEndOf="@+id/editText_isbn"
+        app:layout_constraintStart_toStartOf="@+id/editText_isbn"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true" />
 </android.support.constraint.ConstraintLayout>

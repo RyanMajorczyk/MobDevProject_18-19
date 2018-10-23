@@ -39,10 +39,10 @@ public class Book implements Serializable {
     private List<Review> reviews = new ArrayList<>();
 
     @Lob
-    private Byte[] front_cover;
+    private byte[] front_cover;
 
     @Lob
-    private Byte[] back_cover;
+    private byte[] back_cover;
 
     public Book() {}
 

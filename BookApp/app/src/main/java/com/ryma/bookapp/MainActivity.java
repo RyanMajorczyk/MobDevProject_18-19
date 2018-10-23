@@ -43,14 +43,6 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        BookController controller = new BookController();
-        Book book = new Book();
-        book.setAuteur("PUTTestAUthor");
-        book.setDescription("PutTestDescription");
-        book.setIsbn("PutTestISBN");
-        book.setTitle("PutTestTitle");
-        controller.addBook(book);
     }
 }
 

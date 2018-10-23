@@ -24,6 +24,26 @@ public class Book {
     @JsonProperty("reviews")
     private List<Review> reviews;
 
+    @JsonProperty("front_cover")
+    private byte[] front_cover;
+
+    public Book() {}
+
+    public Book(String title, String isbn, String auteur, String description) {
+        this.title = title;
+        this.isbn = isbn;
+        this.auteur = auteur;
+        this.description = description;
+        this.front_cover = front_cover;
+    }
+
+    public byte[] getFront_cover() {
+        return front_cover;
+    }
+
+    public void setFront_cover(byte[] front_cover) {
+        this.front_cover = front_cover;
+    }
 
     public Long getId() {
         return id;
