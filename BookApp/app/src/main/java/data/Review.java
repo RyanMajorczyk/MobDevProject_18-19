@@ -1,5 +1,6 @@
 package data;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 public class Review {
@@ -14,6 +15,15 @@ public class Review {
 
     @JsonProperty("name")
     private String name;
+
+    public Review(double score, String reviewText, String name) {
+        this.score = score;
+        this.reviewText = reviewText;
+        this.name = name;
+    }
+
+    public Review() {
+    }
 
     public Long getReviewId() {
         return reviewId;
