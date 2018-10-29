@@ -33,7 +33,6 @@ public class AddReviewActivity extends AppCompatActivity {
     private RatingBar score;
     private EditText reviewText;
     private EditText name;
-    private EditText bookId;
     private Review reviewToAdd;
     private List<Book> books;
 
@@ -47,7 +46,6 @@ public class AddReviewActivity extends AppCompatActivity {
         score = findViewById(R.id.ratingBar);
         reviewText = findViewById(R.id.editText_review_text);
         name = findViewById(R.id.editText_review_name);
-        bookId = findViewById(R.id.editText_book_id);
 
         getAllBooks();
     }
@@ -59,7 +57,7 @@ public class AddReviewActivity extends AppCompatActivity {
 
 
     public void onAddReviewButtonClicked(View view) {
-        if (score.getRating() == 0 || reviewText.getText() == null || name.getText() == null || bookId.getText() == null) {
+        if (score.getRating() == 0 || reviewText.getText() == null || name.getText() == null) {
             Toast.makeText(this, "Please fill in all fields!",
                     Toast.LENGTH_LONG).show();
             return;
@@ -69,8 +67,9 @@ public class AddReviewActivity extends AppCompatActivity {
         );
 
 
+        Book bookToAddReviewTo = (Book) spinner.getSelectedItem();
 
-        final String URL = "http://81.240.220.38:8090/review/addToBook/" + bookId.getText();
+        final String URL = "http://81.240.220.38:8090/review/addToBook/" + bookToAddReviewTo.getId();
         new AddReviewTask().execute(URL);
     }
 

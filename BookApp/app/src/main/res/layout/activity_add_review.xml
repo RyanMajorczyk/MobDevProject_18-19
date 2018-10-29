@@ -6,21 +6,6 @@
     android:layout_height="match_parent"
     tools:context=".AddReviewActivity">
 
-    <EditText
-        android:id="@+id/editText_book_id"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="376dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="BookId"
-        android:inputType="number"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/spinner_books" />
-
     <Spinner
         android:id="@+id/spinner_books"
         android:layout_width="match_parent"

@@ -27,7 +27,7 @@ public class Book {
     private List<Review> reviews;
 
     @JsonProperty("front_cover")
-    private Image front_cover;
+    private byte[] front_cover;
 
     public Book() {}
 
@@ -36,15 +36,14 @@ public class Book {
         this.isbn = isbn;
         this.auteur = auteur;
         this.description = description;
-        this.front_cover = byteArray;
     }
 
 
-    public Image getFront_cover() {
+    public byte[] getFront_cover() {
         return front_cover;
     }
 
-    public void setFront_cover(Image front_cover) {
+    public void setFront_cover(byte[] front_cover) {
         this.front_cover = front_cover;
     }
 

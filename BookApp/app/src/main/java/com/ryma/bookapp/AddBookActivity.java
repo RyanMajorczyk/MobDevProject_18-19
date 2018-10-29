@@ -43,7 +43,8 @@ public class AddBookActivity extends AppCompatActivity {
     private EditText title;
     private EditText author;
     private EditText description;
-    private BookController bookController;
+
+    private byte[] image;
 
     private Book bookToAdd;
 
@@ -57,7 +58,6 @@ public class AddBookActivity extends AppCompatActivity {
         title = findViewById(R.id.editText_title);
         author = findViewById(R.id.editText_author);
         description = findViewById(R.id.editText_description);
-        bookController = new BookController();
 
         mImage = (ImageView) findViewById(R.id.imageView_cover);
     }
@@ -87,6 +87,15 @@ public class AddBookActivity extends AppCompatActivity {
 
 
     public void addBookClicked(View view) {
+
+        mImage.setDrawingCacheEnabled(true);
+        mImage.buildDrawingCache();
+        Bitmap bmp = mImage.getDrawingCache();
+
+        ByteArrayOutputStream stream = new ByteArrayOutputStream();
+        bmp.compress(Bitmap.CompressFormat.PNG, 50, stream);
+        image = stream.toByteArray();
+        bmp.recycle();
 
         if (!isbn.getText().toString().equals("") && !title.getText().toString().equals("")
                 && !author.getText().toString().equals("") && !description.getText().toString().equals("")  ) {
@@ -128,6 +137,38 @@ public class AddBookActivity extends AppCompatActivity {
         protected void onPostExecute(ResponseEntity<Book> result) {
             HttpStatus status = result.getStatusCode();
             Toast.makeText(AddBookActivity.this, "Book Added!", Toast.LENGTH_LONG).show();
+
+            final String URL = "http://81.240.220.38:8090/book/addCover/" + result.getBody().getId();
+            new AddImageTask().execute(URL);
+
+        }
+
+    }
+
+
+    class AddImageTask extends AsyncTask<String, Void, ResponseEntity<Book>> {
+
+        //Implements method
+        @Override
+        protected ResponseEntity<Book> doInBackground(String... URL) {
+            final String url = URL[0];
+            RestTemplate restTemplate = new RestTemplate();
+            try {
+                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
+                HttpHeaders headers = new HttpHeaders();
+
+                HttpEntity<byte[]> entity = new HttpEntity<>(image, headers);
+                ResponseEntity<Book> responseEntity = restTemplate.exchange(url, HttpMethod.POST, entity, Book.class);
+                return responseEntity;
+            }
+            catch (Exception ex) {
+                return null;
+            }
+        }
+
+        protected void onPostExecute(ResponseEntity<Book> result) {
+            HttpStatus status = result.getStatusCode();
+            Toast.makeText(AddBookActivity.this, "Image Added!", Toast.LENGTH_LONG).show();
 
             startActivity(new Intent(AddBookActivity.this, MenuActivity.class));
         }
