@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import org.springframework.http.ResponseEntity;
 
@@ -38,11 +39,19 @@ public class BookAdapter extends RecyclerView.Adapter<BookViewHolder> {
     public void onBindViewHolder(@NonNull BookViewHolder bookViewHolder, int position) {
         Book book = books[position];
 
-        Bitmap bmp = BitmapFactory.decodeByteArray(book.getFront_cover(), 0, book.getFront_cover().length);
+        try {
+            if (book.getFront_cover() != null) {
+                Bitmap bmp = BitmapFactory.decodeByteArray(book.getFront_cover(), 0, book.getFront_cover().length);
+                bookViewHolder.mBookImage.setImageBitmap(bmp);
+            }
+        } catch (Exception ex) {
+            Toast.makeText(context, "ImageConversion failed", Toast.LENGTH_SHORT).show();
+        }
+
 
         bookViewHolder.mTitleTextView.setText(book.getTitle());
         bookViewHolder.mAuthorTextView.setText(book.getAuteur());
-        bookViewHolder.mBookImage.setImageBitmap(bmp);
+
     }
 
     @Override

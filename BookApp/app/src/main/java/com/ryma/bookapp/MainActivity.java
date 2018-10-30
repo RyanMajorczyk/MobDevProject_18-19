@@ -18,6 +18,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.concurrent.ExecutionException;
 
 import data.Book;
@@ -25,11 +28,13 @@ import data.Book;
 public class MainActivity extends AppCompatActivity {
     BookController controller = new BookController();
 
+    RecyclerView mRecyclerView;
+    RecyclerView.Adapter mAdapter = null;
+    RecyclerView.LayoutManager mLayoutManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        RecyclerView mRecyclerView;
-        RecyclerView.Adapter mAdapter = null;
-        RecyclerView.LayoutManager mLayoutManager;
+
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
@@ -39,23 +44,17 @@ public class MainActivity extends AppCompatActivity {
         mLayoutManager = new LinearLayoutManager(this, LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        // specify an adapter (see also next example)
-        try {
-            mAdapter = new BookAdapter(this ,getAllBooks());
-        } catch (ExecutionException | InterruptedException e) {
-            e.printStackTrace();
-        }
 
-        mRecyclerView.setAdapter(mAdapter);
-    }
 
-    private ResponseEntity<Book[]> getAllBooks() throws ExecutionException, InterruptedException {
         final String URL = "http://81.240.220.38:8090/book";
-        return new GetAllBooksTask().execute(URL).get();
+        new GetAllBooksTask().execute(URL);
+
+
     }
 
-    @SuppressLint("StaticFieldLeak")
-    class GetAllBooksTask extends AsyncTask<String, Void, ResponseEntity<Book[]>> {
+
+
+    class GetAllBooksTask extends AsyncTask<String, Void, ResponseEntity<Book[]>>{
         @Override
         protected ResponseEntity<Book[]> doInBackground(String... URL) {
             final String url = URL[0];
@@ -65,11 +64,30 @@ public class MainActivity extends AppCompatActivity {
                 HttpHeaders headers = new HttpHeaders();
 
                 HttpEntity<Book> entity = new HttpEntity<>(headers);
-                return restTemplate.exchange(url, HttpMethod.GET, entity, Book[].class);
-            } catch (Exception ex) {
+                ResponseEntity<Book[]> responseEntity = restTemplate.exchange(url, HttpMethod.GET, entity, Book[].class);
+                 return responseEntity;
+            }
+            catch (Exception ex) {
                 return null;
             }
         }
+
+        protected void onPostExecute(ResponseEntity<Book[]> result) {
+
+            setBookAdapter(result);
+
+        }
+    }
+
+    private void setBookAdapter(ResponseEntity<Book[]> result) {
+        // specify an adapter (see also next example)
+        try {
+            mAdapter = new BookAdapter(MainActivity.this ,result);
+            mRecyclerView.setAdapter(mAdapter);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
 }
