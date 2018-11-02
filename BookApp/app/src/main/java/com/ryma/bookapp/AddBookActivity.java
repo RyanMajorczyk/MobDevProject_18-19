@@ -93,7 +93,7 @@ public class AddBookActivity extends AppCompatActivity {
         Bitmap bmp = mImage.getDrawingCache();
 
         ByteArrayOutputStream stream = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.PNG, 50, stream);
+        bmp.compress(Bitmap.CompressFormat.PNG, 0, stream);
         image = stream.toByteArray();
         bmp.recycle();
 

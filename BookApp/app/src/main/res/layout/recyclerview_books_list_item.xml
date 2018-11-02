@@ -12,7 +12,7 @@
         android:layout_marginStart="24dp"
         android:layout_marginTop="8dp"
         android:text="@string/vespasianus_iii"
-        android:textSize="24sp"
+        android:textSize="26sp"
         app:layout_constraintStart_toEndOf="@+id/imageView_cover"
         app:layout_constraintTop_toTopOf="@+id/imageView_cover" />
 
@@ -24,7 +24,7 @@
         android:layout_marginTop="16dp"
         android:layout_marginBottom="8dp"
         android:text="@string/robert_fabri"
-        android:textSize="20sp"
+        android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="@+id/imageView_cover"
         app:layout_constraintStart_toEndOf="@+id/imageView_cover"
         />
@@ -36,9 +36,12 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
+        android:contentDescription="@string/cover_of_the_book"
+        android:src="@mipmap/book_icon"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        tools:srcCompat="@tools:sample/avatars[3]"
-        android:contentDescription="@string/cover_of_the_book" />
+        app:srcCompat="@mipmap/book_icon" />
+
+
 </android.support.constraint.ConstraintLayout>
