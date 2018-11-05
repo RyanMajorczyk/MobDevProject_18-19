@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".AddBookFragment">
+
+    <EditText
+        android:id="@+id/editText_isbn"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="172dp"
+        android:layout_marginEnd="8dp"
+        android:ems="10"
+        android:hint="@string/isbn"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/editText_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/title"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/editText_isbn"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText_isbn"
+        app:layout_constraintTop_toBottomOf="@+id/editText_isbn"
+         />
+
+    <EditText
+        android:id="@+id/editText_author"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/author"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/editText_title"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText_title"
+        app:layout_constraintTop_toBottomOf="@+id/editText_title"
+        android:importantForAutofill="no" />
+
+    <EditText
+        android:id="@+id/editText_description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:hint="@string/summary"
+        android:inputType="textMultiLine"
+        app:layout_constraintEnd_toEndOf="@+id/editText_author"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/editText_author"
+        app:layout_constraintTop_toBottomOf="@+id/editText_author" />
+
+    <Button
+        android:id="@+id/button_add_book"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+
+        android:text="@string/add_book"
+        app:layout_constraintEnd_toEndOf="@+id/editText_description"
+        app:layout_constraintStart_toStartOf="@+id/editText_description"
+        app:layout_constraintTop_toBottomOf="@+id/editText_description" />
+
+    <ImageView
+        android:id="@+id/imageView_cover"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="18dp"
+        android:clickable="true"
+
+        android:src="@mipmap/camera_icon"
+        app:layout_constraintEnd_toEndOf="@+id/editText_isbn"
+        app:layout_constraintStart_toStartOf="@+id/editText_isbn"
+        app:layout_constraintTop_toTopOf="parent"
+        android:focusable="true" />
+    <!--
+        android:onClick="addBookClicked"
+
+    -->
+
+</android.support.constraint.ConstraintLayout>

@@ -18,11 +18,11 @@ import java.io.ByteArrayInputStream;
 
 import data.Book;
 
-public class BookAdapter extends RecyclerView.Adapter<BookViewHolder> {
+public class RecyclerViewAdapter extends RecyclerView.Adapter<BookViewHolder> {
     private Book[] books;
     private Context context;
 
-    BookAdapter(Context context, ResponseEntity<Book[]> allBooks){
+    RecyclerViewAdapter(Context context, ResponseEntity<Book[]> allBooks){
         this.context = context;
         books = allBooks.getBody();
     }

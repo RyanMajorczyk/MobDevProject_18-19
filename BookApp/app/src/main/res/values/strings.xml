@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">BookApp</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
@@ -15,4 +15,9 @@
     <string name="robert_fabri">Robert Fabri</string>
     <string name="todo">TODO</string>
     <string name="cover_of_the_book">Cover of the book</string>
+    <string name="add_book_button">Add Book</string>
+    <string name="author">Author</string>
+    <string name="title">Title</string>
+    <string name="isbn">ISBN</string>
+    <string name="summary">Summary</string>
 </resources>

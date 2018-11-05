@@ -1,12 +1,10 @@
 package com.ryma.bookapp;
 
-import android.annotation.SuppressLint;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.text.Layout;
 
 
 import com.ryma.Controllers.BookController;
@@ -17,11 +15,6 @@ import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 import data.Book;
 
@@ -82,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private void setBookAdapter(ResponseEntity<Book[]> result) {
         // specify an adapter (see also next example)
         try {
-            mAdapter = new BookAdapter(MainActivity.this ,result);
+            mAdapter = new RecyclerViewAdapter(MainActivity.this ,result);
             mRecyclerView.setAdapter(mAdapter);
         } catch (Exception e) {
             e.printStackTrace();

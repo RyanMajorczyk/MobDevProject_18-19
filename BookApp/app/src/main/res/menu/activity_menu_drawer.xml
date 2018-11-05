@@ -20,10 +20,7 @@
             android:id="@+id/nav_MyReviews"
             android:icon="@mipmap/my_books_icon"
             android:title="@string/my_reviews" />
-        <item
-            android:id="@+id/nav_Settings"
-            android:icon="@mipmap/settings_icon"
-            android:title="@string/settings" />
+
     </group>
 
 </menu>

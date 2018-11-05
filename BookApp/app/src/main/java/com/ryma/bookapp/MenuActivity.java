@@ -74,8 +74,6 @@ public class MenuActivity extends AppCompatActivity
             startActivity(new Intent(MenuActivity.this, AddReviewActivity.class));
         } else if (id == R.id.nav_MyReviews) {
 
-        } else if (id == R.id.nav_Settings) {
-
         } else if (id == R.id.home) {
             startActivity(new Intent(MenuActivity.this, MainActivity.class));
         }
