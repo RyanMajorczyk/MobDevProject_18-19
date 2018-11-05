@@ -41,8 +41,11 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<BookViewHolder> {
 
         try {
             if (book.getFront_cover() != null) {
-                Bitmap bmp = BitmapFactory.decodeByteArray(book.getFront_cover(), 0, book.getFront_cover().length);
-                bookViewHolder.mBookImage.setImageBitmap(bmp);
+                Bitmap bitmap = BitmapFactory.decodeByteArray(book.getFront_cover(), 0, book.getFront_cover().length);
+                //bookViewHolder.mBookImage.setImageBitmap(bitmap);
+                bookViewHolder.mBookImage.setImageResource(R.mipmap.book_icon);
+            } else {
+                bookViewHolder.mBookImage.setImageResource(R.mipmap.book_icon);
             }
         } catch (Exception ex) {
             Toast.makeText(context, "ImageConversion failed", Toast.LENGTH_SHORT).show();
