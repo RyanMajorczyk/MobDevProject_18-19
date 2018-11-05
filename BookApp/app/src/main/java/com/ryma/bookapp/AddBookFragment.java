@@ -18,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.ryma.data.DatabaseHandler;
+
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
@@ -31,6 +33,8 @@ import java.io.ByteArrayOutputStream;
 import data.Book;
 
 public class AddBookFragment extends Fragment {
+
+    private DatabaseHandler myDatabase;
 
     private static final int CAMERA_PIC_REQUEST = 1111;
 
@@ -63,14 +67,18 @@ public class AddBookFragment extends Fragment {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mImage.setDrawingCacheEnabled(true);
-                mImage.buildDrawingCache();
-                Bitmap bmp = mImage.getDrawingCache();
+                try {
+                    mImage.setDrawingCacheEnabled(true);
+                    mImage.buildDrawingCache();
+                    Bitmap bmp = mImage.getDrawingCache();
 
-                ByteArrayOutputStream stream = new ByteArrayOutputStream();
-                bmp.compress(Bitmap.CompressFormat.PNG, 50, stream);
-                image = stream.toByteArray();
-                bmp.recycle();
+                    ByteArrayOutputStream stream = new ByteArrayOutputStream();
+                    bmp.compress(Bitmap.CompressFormat.PNG, 50, stream);
+                    image = stream.toByteArray();
+                    bmp.recycle();
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
 
                 if (!isbn.getText().toString().equals("") && !title.getText().toString().equals("")
                         && !author.getText().toString().equals("") && !description.getText().toString().equals("")  ) {
@@ -84,8 +92,8 @@ public class AddBookFragment extends Fragment {
                     new AddBookTask().execute(URL);
 
                 } else {
-                   // Toast toast = Toast.makeText(AddBookFragment.this,"Please fill in all fields",Toast.LENGTH_LONG);
-                    //toast.show();
+                    Toast toast = Toast.makeText(getActivity().getApplicationContext(),"Please fill in all fields",Toast.LENGTH_LONG);
+                    toast.show();
                 }
             }
         });
@@ -93,6 +101,18 @@ public class AddBookFragment extends Fragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        isbn = view.findViewById(R.id.editText_isbn);
+        title = view.findViewById(R.id.editText_title);
+        author = view.findViewById(R.id.editText_author);
+        description = view.findViewById(R.id.editText_description);
+
+        mImage = (ImageView) view.findViewById(R.id.imageView_cover);
+
+        myDatabase = new DatabaseHandler(getActivity().getApplicationContext());
+
+    }
     class AddBookTask extends AsyncTask<String, Void, ResponseEntity<Book>> {
 
         //Implements method
@@ -115,8 +135,18 @@ public class AddBookFragment extends Fragment {
 
         protected void onPostExecute(ResponseEntity<Book> result) {
             HttpStatus status = result.getStatusCode();
-          //  Toast.makeText(AddBookFragment.this, "Book Added!", Toast.LENGTH_LONG).show();
-
+            boolean isInserted = false;
+            try {
+                isInserted = myDatabase.insertData(result.getBody().getId().intValue(), bookToAdd.getTitle(), bookToAdd.getIsbn(), bookToAdd.getAuteur(), bookToAdd.getDescription());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
+            // Can do some checks
+            if (isInserted) {
+                Toast.makeText(getActivity().getApplicationContext(), "Book Added!", Toast.LENGTH_LONG).show();
+            } else {
+                Toast.makeText(getActivity().getApplicationContext(), "Locale book save failed!", Toast.LENGTH_LONG).show();
+            }
             final String URL = "http://81.240.220.38:8090/book/addCover/" + result.getBody().getId();
             new AddImageTask().execute(URL);
 
@@ -146,20 +176,9 @@ public class AddBookFragment extends Fragment {
 
         protected void onPostExecute(ResponseEntity<Book> result) {
             HttpStatus status = result.getStatusCode();
-          //  Toast.makeText(AddBookFragment.this, "Image Added!", Toast.LENGTH_LONG).show();
+            Toast.makeText(getActivity().getApplicationContext(), "Image Added!", Toast.LENGTH_LONG).show();
 
-           // startActivity(new Intent(AddBookFragment, MenuActivity.class));
-
-            FragmentManager fragmentManager = getFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager
-                    .beginTransaction();
-
-            AddReviewFragment fragment3 = new AddReviewFragment();
-            fragmentTransaction.replace(R.id.add_book_fragment, fragment3);
-//provide the fragment ID of your first fragment which you have given in
-//fragment_layout_example.xml file in place of first argument
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.commit();
+            startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
 
         }
 
