@@ -10,6 +10,6 @@ public interface IBookController {
 
     List<Book> getAllBooks();
     Optional<Book> getBookById(int id);
-    void addBook(Book book);
+    Book addBook(Book book);
     Book editBook(Book book);
 }

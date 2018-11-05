@@ -6,6 +6,7 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.awt.*;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -39,10 +40,8 @@ public class Book implements Serializable {
     private List<Review> reviews = new ArrayList<>();
 
     @Lob
+    @Basic(fetch = FetchType.EAGER)
     private byte[] front_cover;
-
-    @Lob
-    private byte[] back_cover;
 
     public Book() {}
 
@@ -52,6 +51,14 @@ public class Book implements Serializable {
         this.auteur = auteur;
         this.description = description;
         this.reviews = reviews;
+    }
+
+    public byte[] getFront_cover() {
+        return front_cover;
+    }
+
+    public void setFront_cover(byte[] front_cover) {
+        this.front_cover = front_cover;
     }
 
     public int getId() {
