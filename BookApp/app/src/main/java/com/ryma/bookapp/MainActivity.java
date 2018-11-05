@@ -75,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
     private void setBookAdapter(ResponseEntity<Book[]> result) {
         // specify an adapter (see also next example)
         try {
-            mAdapter = new RecyclerViewAdapter(MainActivity.this ,result);
+            mAdapter = new RecyclerViewAdapter(MainActivity.this ,result.getBody());
             mRecyclerView.setAdapter(mAdapter);
         } catch (Exception e) {
             e.printStackTrace();

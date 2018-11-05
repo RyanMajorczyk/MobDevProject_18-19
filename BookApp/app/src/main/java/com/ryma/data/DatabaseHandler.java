@@ -2,6 +2,7 @@ package com.ryma.data;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
@@ -37,5 +38,10 @@ public class DatabaseHandler extends SQLiteOpenHelper {
         contentValue.put("DESCRIPTIOn", description);
         long result = db.insert(TABLE_NAME, null, contentValue);
         return result != -1;
+    }
+
+    public Cursor getAllBooks() {
+        SQLiteDatabase db = this.getReadableDatabase();
+        return db.rawQuery("SELECT * FROM " + TABLE_NAME, null);
     }
 }

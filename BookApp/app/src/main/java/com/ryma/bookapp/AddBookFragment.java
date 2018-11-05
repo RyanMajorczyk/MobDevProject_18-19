@@ -178,7 +178,7 @@ public class AddBookFragment extends Fragment {
             HttpStatus status = result.getStatusCode();
             Toast.makeText(getActivity().getApplicationContext(), "Image Added!", Toast.LENGTH_LONG).show();
 
-            startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+            startActivity(new Intent(getActivity().getApplicationContext(), MenuActivity.class));
 
         }
 

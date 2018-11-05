@@ -25,7 +25,8 @@
         <activity android:name=".MainActivity" />
         <activity android:name=".AddBookActivity" />
         <activity android:name=".AddReviewActivity" />
-        <activity android:name=".BookDetailActivity"></activity>
+        <activity android:name=".BookDetailActivity" />
+        <activity android:name=".MyBooksActivity"></activity>
     </application>
 
 </manifest>

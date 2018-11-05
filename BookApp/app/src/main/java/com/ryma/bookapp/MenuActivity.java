@@ -73,7 +73,7 @@ public class MenuActivity extends AppCompatActivity
         } else if (id == R.id.nav_AddReview) {
             startActivity(new Intent(MenuActivity.this, AddReviewActivity.class));
         } else if (id == R.id.nav_MyReviews) {
-
+            startActivity(new Intent(MenuActivity.this, MyBooksActivity.class));
         } else if (id == R.id.home) {
             startActivity(new Intent(MenuActivity.this, MainActivity.class));
         }
