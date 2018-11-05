@@ -7,6 +7,8 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -82,8 +84,8 @@ public class AddBookFragment extends Fragment {
                     new AddBookTask().execute(URL);
 
                 } else {
-                    Toast toast = Toast.makeText(this,"Please fill in all fields",Toast.LENGTH_LONG);
-                    toast.show();
+                   // Toast toast = Toast.makeText(AddBookFragment.this,"Please fill in all fields",Toast.LENGTH_LONG);
+                    //toast.show();
                 }
             }
         });
@@ -113,7 +115,7 @@ public class AddBookFragment extends Fragment {
 
         protected void onPostExecute(ResponseEntity<Book> result) {
             HttpStatus status = result.getStatusCode();
-            Toast.makeText(AddBookFragment.this, "Book Added!", Toast.LENGTH_LONG).show();
+          //  Toast.makeText(AddBookFragment.this, "Book Added!", Toast.LENGTH_LONG).show();
 
             final String URL = "http://81.240.220.38:8090/book/addCover/" + result.getBody().getId();
             new AddImageTask().execute(URL);
@@ -144,9 +146,21 @@ public class AddBookFragment extends Fragment {
 
         protected void onPostExecute(ResponseEntity<Book> result) {
             HttpStatus status = result.getStatusCode();
-            Toast.makeText(AddBookFragment.this, "Image Added!", Toast.LENGTH_LONG).show();
+          //  Toast.makeText(AddBookFragment.this, "Image Added!", Toast.LENGTH_LONG).show();
 
-            startActivity(new Intent(AddBookFragment, MenuActivity.class));
+           // startActivity(new Intent(AddBookFragment, MenuActivity.class));
+
+            FragmentManager fragmentManager = getFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager
+                    .beginTransaction();
+
+            AddReviewFragment fragment3 = new AddReviewFragment();
+            fragmentTransaction.replace(R.id.add_book_fragment, fragment3);
+//provide the fragment ID of your first fragment which you have given in
+//fragment_layout_example.xml file in place of first argument
+            fragmentTransaction.addToBackStack(null);
+            fragmentTransaction.commit();
+
         }
 
     }
