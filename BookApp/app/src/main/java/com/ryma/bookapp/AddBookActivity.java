@@ -35,57 +35,10 @@ import data.Book;
 import data.Review;
 
 public class AddBookActivity extends AppCompatActivity {
-    private static final int CAMERA_PIC_REQUEST = 1111;
-
-    private ImageView mImage;
-
-    private EditText isbn;
-    private EditText title;
-    private EditText author;
-    private EditText description;
-
-    private byte[] image;
-
-    private Book bookToAdd;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_book);
-
-        isbn = findViewById(R.id.editText_isbn);
-        title = findViewById(R.id.editText_title);
-        author = findViewById(R.id.editText_author);
-        description = findViewById(R.id.editText_description);
-
-        mImage = (ImageView) findViewById(R.id.imageView_cover);
+        setContentView(R.layout.activity_add_book);;
     }
-
-
-
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if (resultCode == RESULT_OK) {
-
-            Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-
-            try {
-                mImage.setImageBitmap(bitmap);
-            } catch (Exception ex) {
-                Toast toast = Toast.makeText(this,"ERROR",Toast.LENGTH_LONG);
-                toast.show();
-                Log.e("FOUT",ex.getStackTrace() + "");
-            }
-
-            // mImage.setImageBitmap(bitmap);
-        }
-
-    }
-
-
-
-
-
-
-
 }

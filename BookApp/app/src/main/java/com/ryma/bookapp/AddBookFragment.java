@@ -11,6 +11,9 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -97,7 +100,7 @@ public class AddBookFragment extends Fragment {
                 }
             }
         });
-
+        setHasOptionsMenu(true);
         return view;
     }
 
@@ -113,6 +116,36 @@ public class AddBookFragment extends Fragment {
         myDatabase = new DatabaseHandler(getActivity().getApplicationContext());
 
     }
+
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        // TODO Add your menu entries here
+        inflater.inflate(R.menu.activity_menu_drawer, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                startActivity(new Intent(getView().getContext(), MainActivity.class));
+                return true;
+            case R.id.nav_addBook:
+                startActivity(new Intent(getView().getContext(), AddBookActivity.class));
+                return true;
+            case R.id.nav_AddReview:
+                startActivity(new Intent(getView().getContext(), AddReviewActivity.class));
+                return true;
+            case R.id.nav_MyReviews:
+                startActivity(new Intent(getView().getContext(), MyBooksActivity.class));
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+
     class AddBookTask extends AsyncTask<String, Void, ResponseEntity<Book>> {
 
         //Implements method
@@ -178,7 +211,7 @@ public class AddBookFragment extends Fragment {
             HttpStatus status = result.getStatusCode();
             Toast.makeText(getActivity().getApplicationContext(), "Image Added!", Toast.LENGTH_LONG).show();
 
-            startActivity(new Intent(getActivity().getApplicationContext(), MenuActivity.class));
+            startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
 
         }
 
