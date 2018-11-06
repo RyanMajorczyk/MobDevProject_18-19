@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context=".AddBookActivity">
+    tools:context=".AddBookActivity"
+    android:baselineAligned="false">
 
     <fragment
         android:id="@+id/add_book_input_fragment"
@@ -20,5 +21,5 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_weight="1" />
-    
+
 </LinearLayout>
