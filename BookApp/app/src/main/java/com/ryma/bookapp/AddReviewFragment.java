@@ -37,7 +37,7 @@ public class AddReviewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_add_review_fragment, container, false);
+        View view = inflater.inflate(R.layout.add_review_fragment, container, false);
 
         Button button = view.findViewById(R.id.add_review_button);
         button.setOnClickListener(new View.OnClickListener() {

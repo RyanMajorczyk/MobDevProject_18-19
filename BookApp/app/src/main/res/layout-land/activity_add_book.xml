@@ -4,21 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
+    android:orientation="horizontal"
     tools:context=".AddBookActivity">
-
-    <fragment
-        android:id="@+id/add_book_buttons_fragment"
-        android:name="com.ryma.bookapp.AddBookInputFragment"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1" />
 
     <fragment
         android:id="@+id/add_book_input_fragment"
         android:name="com.ryma.bookapp.AddBookButtonsFragment"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_weight="1" />
 
+    <fragment
+        android:id="@+id/add_book_buttons_fragment"
+        android:name="com.ryma.bookapp.AddBookInputFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_weight="1" />
+    
 </LinearLayout>
