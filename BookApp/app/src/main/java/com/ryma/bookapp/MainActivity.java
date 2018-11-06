@@ -1,10 +1,14 @@
 package com.ryma.bookapp;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 
 
 import com.ryma.Controllers.BookController;
@@ -46,6 +50,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        MenuInflater findMenuItems = getMenuInflater();
+        findMenuItems.inflate(R.menu.activity_menu_drawer, menu);
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case R.id.home:
+                startActivity(new Intent(this, MainActivity.class));
+                return true;
+            case R.id.nav_addBook:
+                startActivity(new Intent(this, AddBookActivity.class));
+                return true;
+            case R.id.nav_AddReview:
+                startActivity(new Intent(this, AddReviewActivity.class));
+                return true;
+            case R.id.nav_MyReviews:
+                startActivity(new Intent(this, MyBooksActivity.class));
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     class GetAllBooksTask extends AsyncTask<String, Void, ResponseEntity<Book[]>>{
         @Override

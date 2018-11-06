@@ -2,8 +2,13 @@ package com.ryma.bookapp;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.EditText;
@@ -28,70 +33,10 @@ import data.Review;
 
 public class AddReviewActivity extends AppCompatActivity {
 
-    private Spinner spinner;
-
-    private RatingBar score;
-    private EditText reviewText;
-    private EditText name;
-    private Review reviewToAdd;
-    private List<Book> books;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
-
-
-
-        score = findViewById(R.id.ratingBar);
-        reviewText = findViewById(R.id.editText_review_text);
-        name = findViewById(R.id.editText_review_name);
     }
-
-
-    public void onAddReviewButtonClicked(View view) {
-        if (score.getRating() == 0 || reviewText.getText() == null || name.getText() == null) {
-            Toast.makeText(this, "Please fill in all fields!",
-                    Toast.LENGTH_LONG).show();
-            return;
-        }
-        reviewToAdd = new Review(
-                score.getRating(),reviewText.getText().toString(),name.getText().toString()
-        );
-
-
-        final String URL = "http://81.240.220.38:8090/review/addToBook/1";
-        new AddReviewTask().execute(URL);
-    }
-
-    class AddReviewTask extends AsyncTask<String, Void, ResponseEntity<Review>> {
-
-        //Implements method
-        @Override
-        protected ResponseEntity<Review> doInBackground(String... URL) {
-            final String url = URL[0];
-            RestTemplate restTemplate = new RestTemplate();
-            try {
-                restTemplate.getMessageConverters().add(new MappingJackson2HttpMessageConverter());
-                HttpHeaders headers = new HttpHeaders();
-
-                HttpEntity<Review> entity = new HttpEntity<>(reviewToAdd, headers);
-                ResponseEntity<Review> responseEntity = restTemplate.exchange(url, HttpMethod.POST, entity, Review.class);
-                return responseEntity;
-            }
-            catch (Exception ex) {
-                return null;
-            }
-        }
-
-        protected void onPostExecute(ResponseEntity<Review> result) {
-            HttpStatus status = result.getStatusCode();
-            Toast.makeText(AddReviewActivity.this, "Review Added", Toast.LENGTH_SHORT).show();
-            startActivity(new Intent(AddReviewActivity.this, MenuActivity.class));
-        }
-
-    }
-
-
-
+    
 }
