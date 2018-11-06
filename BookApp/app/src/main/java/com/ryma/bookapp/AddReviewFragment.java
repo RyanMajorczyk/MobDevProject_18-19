@@ -57,12 +57,12 @@ public class AddReviewFragment extends Fragment {
                 new AddReviewTask().execute(URL);
             }
         });
-        setHasOptionsMenu(true);
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        setHasOptionsMenu(true);
         score = view.findViewById(R.id.ratingBar);
         reviewText = view.findViewById(R.id.editText_review_text);
         name = view.findViewById(R.id.editText_review_name);
