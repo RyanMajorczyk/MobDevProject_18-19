@@ -7,21 +7,21 @@
     android:orientation="horizontal"
     tools:context=".AddBookActivity"
     android:baselineAligned="false">
-
-    <fragment
-        android:id="@+id/add_book_input_fragment"
-        android:name="com.ryma.bookapp.AddBookButtonsFragment"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_gravity="start"
-        android:layout_weight="1" />
-
     <fragment
         android:id="@+id/add_book_buttons_fragment"
         android:name="com.ryma.bookapp.AddBookInputFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_gravity="end"
+        android:layout_gravity="left"
         android:layout_weight="1" />
+    <fragment
+        android:id="@+id/add_book_input_fragment"
+        android:name="com.ryma.bookapp.AddBookButtonsFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="right"
+        android:layout_weight="1" />
+
+
 
 </LinearLayout>
