@@ -6,54 +6,8 @@
     android:layout_height="match_parent"
     tools:context=".AddReviewActivity">
 
-    <EditText
-        android:id="@+id/editText_review_name"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginEnd="8dp"
-        android:ems="10"
-        android:hint="ReviewName"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/editText_review_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="ReviewText"
-        android:inputType="textMultiLine"
-        app:layout_constraintEnd_toEndOf="@+id/editText_review_name"
-        app:layout_constraintStart_toStartOf="@+id/editText_review_name"
-        app:layout_constraintTop_toBottomOf="@+id/editText_review_name" />
-
-    <RatingBar
-        android:id="@+id/ratingBar"
-        style="@style/Widget.AppCompat.RatingBar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="16dp"
-        app:layout_constraintEnd_toEndOf="@+id/editText_review_name"
-        app:layout_constraintHorizontal_bias="0.466"
-        app:layout_constraintStart_toStartOf="@+id/editText_review_name"
-        app:layout_constraintTop_toBottomOf="@+id/editText_review_text" />
-
-    <Button
-        android:id="@+id/button2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:onClick="onAddReviewButtonClicked"
-        android:text="Add Review"
-        app:layout_constraintEnd_toEndOf="@+id/ratingBar"
-        app:layout_constraintHorizontal_bias="0.503"
-        app:layout_constraintStart_toStartOf="@+id/ratingBar"
-        app:layout_constraintTop_toBottomOf="@+id/ratingBar" />
+    <fragment android:name="com.ryma.bookapp.AddReviewFragment"
+        android:id="@+id/add_review_fragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
 </android.support.constraint.ConstraintLayout>
