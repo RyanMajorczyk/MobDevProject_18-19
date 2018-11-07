@@ -1,27 +1,38 @@
-package com.ryma.bookapp;
+package com.ryma.bookapp.BookDetail;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
+import android.support.v4.app.FragmentActivity;
+import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
+import android.support.v4.app.FragmentTransaction;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-
-import com.ryma.Controllers.BookController;
 import com.ryma.bookapp.AddBook.AddBookActivity;
 import com.ryma.bookapp.AddReview.AddReviewActivity;
+import com.ryma.bookapp.MainActivity;
 import com.ryma.bookapp.MyBooks.MyBooksActivity;
+import com.ryma.bookapp.R;
 
-public class MainActivity extends AppCompatActivity {
+public class BookDetailActivity extends FragmentActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_book_detail);
+
+        BookDetailImageFragment imageFragment = new BookDetailImageFragment();
+        BookDetailLabelsFragment labelsFragment = new BookDetailLabelsFragment();
+
+        FragmentManager fragmentManageranager=getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManageranager.beginTransaction();
+
+        transaction.add(R.id.book_detail_image, imageFragment, "");
+        transaction.add(R.id.bookd_detail_labels, labelsFragment,"");
+
+        transaction.commit();
     }
-
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater findMenuItems = getMenuInflater();
@@ -48,5 +59,3 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 }
-
-

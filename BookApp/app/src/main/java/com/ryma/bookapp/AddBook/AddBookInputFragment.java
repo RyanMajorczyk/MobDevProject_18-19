@@ -1,4 +1,4 @@
-package com.ryma.bookapp;
+package com.ryma.bookapp.AddBook;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -8,11 +8,18 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class BookDetailFragment extends Fragment {
+import com.ryma.bookapp.R;
+
+public class AddBookInputFragment extends Fragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        return super.onCreateView(inflater, container, savedInstanceState);
+        return inflater.inflate(R.layout.add_book_input_fragment, container, false);
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
     }
 }

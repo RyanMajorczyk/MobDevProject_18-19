@@ -22,7 +22,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<BookViewHolder> {
     private Book[] books;
     private Context context;
 
-    RecyclerViewAdapter(Context context, Book[] allBooks){
+    public RecyclerViewAdapter(Context context, Book[] allBooks){
         this.context = context;
         books = allBooks;
     }

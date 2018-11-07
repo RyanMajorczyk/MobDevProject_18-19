@@ -5,18 +5,18 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".AddBookActivity">
+    tools:context=".AddBook.AddBookActivity">
 
     <fragment
         android:id="@+id/add_book_buttons_fragment"
-        android:name="com.ryma.bookapp.AddBookInputFragment"
+        android:name="com.ryma.bookapp.AddBook.AddBookInputFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" />
 
     <fragment
         android:id="@+id/add_book_input_fragment"
-        android:name="com.ryma.bookapp.AddBookButtonsFragment"
+        android:name="com.ryma.bookapp.AddBook.AddBookButtonsFragment"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1" />

@@ -17,9 +17,9 @@
             android:icon="@mipmap/add_book_icon"
             android:title="@string/add_review" />
         <item
-            android:id="@+id/nav_MyReviews"
+            android:id="@+id/nav_MyBooks"
             android:icon="@mipmap/my_books_icon"
-            android:title="@string/my_reviews" />
+            android:title="@string/my_books" />
 
     </group>
 

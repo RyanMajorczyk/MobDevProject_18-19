@@ -21,10 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddBookActivity" />
-        <activity android:name=".AddReviewActivity" />
-        <activity android:name=".BookDetailActivity" />
-        <activity android:name=".MyBooksActivity"></activity>
+        <activity android:name=".AddBook.AddBookActivity" />
+        <activity android:name=".AddReview.AddReviewActivity" />
+        <activity android:name=".BookDetail.BookDetailActivity" />
+        <activity android:name=".MyBooks.MyBooksActivity"></activity>
     </application>
 
 </manifest>

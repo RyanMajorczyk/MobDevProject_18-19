@@ -1,26 +1,24 @@
-package com.ryma.bookapp;
+package com.ryma.bookapp.AddReview;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-
-import com.ryma.Controllers.BookController;
 import com.ryma.bookapp.AddBook.AddBookActivity;
-import com.ryma.bookapp.AddReview.AddReviewActivity;
+import com.ryma.bookapp.MainActivity;
 import com.ryma.bookapp.MyBooks.MyBooksActivity;
+import com.ryma.bookapp.R;
 
-public class MainActivity extends AppCompatActivity {
+public class AddReviewActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_add_review);
     }
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -47,6 +45,5 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+    
 }
-
-

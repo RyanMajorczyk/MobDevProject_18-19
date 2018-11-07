@@ -1,4 +1,4 @@
-package com.ryma.bookapp;
+package com.ryma.bookapp.AddBook;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -7,9 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
-import android.support.v4.app.FragmentTransaction;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -21,6 +18,10 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.ryma.bookapp.AddReview.AddReviewActivity;
+import com.ryma.bookapp.MainActivity;
+import com.ryma.bookapp.MyBooks.MyBooksActivity;
+import com.ryma.bookapp.R;
 import com.ryma.data.DatabaseHandler;
 
 import org.springframework.http.HttpEntity;
@@ -116,35 +117,6 @@ public class AddBookButtonsFragment extends Fragment {
         myDatabase = new DatabaseHandler(getActivity().getApplicationContext());
 
     }
-
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // TODO Add your menu entries here
-        inflater.inflate(R.menu.activity_menu_drawer, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                startActivity(new Intent(getView().getContext(), MainActivity.class));
-                return true;
-            case R.id.nav_addBook:
-                startActivity(new Intent(getView().getContext(), AddBookActivity.class));
-                return true;
-            case R.id.nav_AddReview:
-                startActivity(new Intent(getView().getContext(), AddReviewActivity.class));
-                return true;
-            case R.id.nav_MyReviews:
-                startActivity(new Intent(getView().getContext(), MyBooksActivity.class));
-                return true;
-            default:
-                return super.onOptionsItemSelected(item);
-        }
-    }
-
 
     class AddBookTask extends AsyncTask<String, Void, ResponseEntity<Book>> {
 

@@ -1,4 +1,4 @@
-package com.ryma.bookapp;
+package com.ryma.bookapp.AddReview;
 
 import android.content.Intent;
 import android.os.AsyncTask;
@@ -16,6 +16,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
+
+import com.ryma.bookapp.AddBook.AddBookActivity;
+import com.ryma.bookapp.MainActivity;
+import com.ryma.bookapp.MyBooks.MyBooksActivity;
+import com.ryma.bookapp.R;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -66,33 +71,6 @@ public class AddReviewFragment extends Fragment {
         score = view.findViewById(R.id.ratingBar);
         reviewText = view.findViewById(R.id.editText_review_text);
         name = view.findViewById(R.id.editText_review_name);
-    }
-
-    @Override
-    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
-        // TODO Add your menu entries here
-        inflater.inflate(R.menu.activity_menu_drawer, menu);
-        super.onCreateOptionsMenu(menu, inflater);
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.home:
-                startActivity(new Intent(getView().getContext(), MainActivity.class));
-                return true;
-            case R.id.nav_addBook:
-                startActivity(new Intent(getView().getContext(), AddBookActivity.class));
-                return true;
-            case R.id.nav_AddReview:
-                startActivity(new Intent(getView().getContext(), AddReviewActivity.class));
-                return true;
-            case R.id.nav_MyReviews:
-                startActivity(new Intent(getView().getContext(), MyBooksActivity.class));
-                return true;
-                default:
-                    return super.onOptionsItemSelected(item);
-        }
     }
 
     class AddReviewTask extends AsyncTask<String, Void, ResponseEntity<Review>> {
