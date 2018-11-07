@@ -1,5 +1,6 @@
 package com.ryma.bookapp.AddBook;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -72,6 +73,23 @@ public class AddBookButtonsFragment extends Fragment {
             }
         });
 
+
+        setHasOptionsMenu(true);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        isbn = view.findViewById(R.id.editText_isbn);
+        title = view.findViewById(R.id.editText_title);
+        author = view.findViewById(R.id.editText_author);
+        description = view.findViewById(R.id.editText_description);
+
+        mImage = (ImageView) view.findViewById(R.id.imageView_cover);
+
+        myDatabase = new DatabaseHandler(getActivity().getApplicationContext());
+
+
         Button button = view.findViewById(R.id.button_add_book);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -106,20 +124,6 @@ public class AddBookButtonsFragment extends Fragment {
                 }
             }
         });
-        setHasOptionsMenu(true);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        isbn = view.findViewById(R.id.editText_isbn);
-        title = view.findViewById(R.id.editText_title);
-        author = view.findViewById(R.id.editText_author);
-        description = view.findViewById(R.id.editText_description);
-
-        mImage = (ImageView) view.findViewById(R.id.imageView_cover);
-
-        myDatabase = new DatabaseHandler(getActivity().getApplicationContext());
 
     }
 
@@ -189,6 +193,7 @@ public class AddBookButtonsFragment extends Fragment {
             Toast.makeText(getActivity().getApplicationContext(), "Image Added!", Toast.LENGTH_LONG).show();
 
             startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+
 
         }
 
