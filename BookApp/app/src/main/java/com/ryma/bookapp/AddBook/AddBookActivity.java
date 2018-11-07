@@ -42,7 +42,7 @@ import java.io.FileOutputStream;
 import data.Book;
 import data.Review;
 
-public class AddBookActivity extends FragmentActivity {
+public class AddBookActivity extends AppCompatActivity {
     private static final int CAMERA_PIC_REQUEST = 1111;
 
     private ImageView mImage;

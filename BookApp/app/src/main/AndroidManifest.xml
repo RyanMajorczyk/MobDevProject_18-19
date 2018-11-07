@@ -21,7 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AddBook.AddBookActivity" />
+        <activity android:name=".AddBook.AddBookActivity" android:label="Add A Book" />
         <activity android:name=".AddReview.AddReviewActivity" />
         <activity android:name=".BookDetail.BookDetailActivity" />
         <activity android:name=".MyBooks.MyBooksActivity"></activity>
