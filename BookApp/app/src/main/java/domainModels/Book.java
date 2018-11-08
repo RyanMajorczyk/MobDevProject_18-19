@@ -42,6 +42,14 @@ public class Book {
         this.auteur = auteur;
         this.description = description;
     }
+    public Book(Long id, String title, String isbn, String auteur, String description, byte[] front_cover) {
+        this.id = id;
+        this.title = title;
+        this.isbn = isbn;
+        this.auteur = auteur;
+        this.description = description;
+        this.front_cover = front_cover;
+    }
 
 
     public byte[] getFront_cover() {
