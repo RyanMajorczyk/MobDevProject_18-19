@@ -7,9 +7,6 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -17,9 +14,7 @@ import android.widget.EditText;
 import android.widget.RatingBar;
 import android.widget.Toast;
 
-import com.ryma.bookapp.AddBook.AddBookActivity;
 import com.ryma.bookapp.MainActivity;
-import com.ryma.bookapp.MyBooks.MyBooksActivity;
 import com.ryma.bookapp.R;
 
 import org.springframework.http.HttpEntity;
@@ -30,7 +25,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import data.Review;
+import domainModels.Review;
 
 public class AddReviewFragment extends Fragment {
 

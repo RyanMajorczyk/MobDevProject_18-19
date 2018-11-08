@@ -9,9 +9,6 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.Menu;
-import android.view.MenuInflater;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -19,11 +16,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.ryma.bookapp.AddReview.AddReviewActivity;
 import com.ryma.bookapp.MainActivity;
-import com.ryma.bookapp.MyBooks.MyBooksActivity;
 import com.ryma.bookapp.R;
-import com.ryma.data.DatabaseHandler;
+import com.ryma.database.DatabaseHandler;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -35,7 +30,7 @@ import org.springframework.web.client.RestTemplate;
 
 import java.io.ByteArrayOutputStream;
 
-import data.Book;
+import domainModels.Book;
 
 public class AddBookButtonsFragment extends Fragment {
 

@@ -2,12 +2,8 @@ package com.ryma.Controllers;
 
 import android.app.Activity;
 import android.os.AsyncTask;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.TextView;
 
 import com.ryma.bookapp.MainActivity;
-import com.ryma.bookapp.R;
 
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -17,7 +13,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.web.client.RestTemplate;
 
-import data.Book;
+import domainModels.Book;
 
 public class BookController {
     private Book bookToGiveBack = new Book();

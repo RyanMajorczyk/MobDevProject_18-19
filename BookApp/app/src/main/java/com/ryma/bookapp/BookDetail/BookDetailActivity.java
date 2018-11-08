@@ -14,6 +14,7 @@ import com.ryma.bookapp.AddReview.AddReviewActivity;
 import com.ryma.bookapp.MainActivity;
 import com.ryma.bookapp.MyBooks.MyBooksActivity;
 import com.ryma.bookapp.R;
+import com.ryma.bookapp.RecyclerViewReviewFragment;
 
 public class BookDetailActivity extends FragmentActivity {
 
@@ -24,12 +25,14 @@ public class BookDetailActivity extends FragmentActivity {
 
         BookDetailImageFragment imageFragment = new BookDetailImageFragment();
         BookDetailLabelsFragment labelsFragment = new BookDetailLabelsFragment();
+        //RecyclerViewReviewFragment reviewsFragment = new RecyclerViewReviewFragment();
 
         FragmentManager fragmentManageranager=getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManageranager.beginTransaction();
 
-        transaction.add(R.id.book_detail_image, imageFragment, "");
-        transaction.add(R.id.bookd_detail_labels, labelsFragment,"");
+        transaction.add(R.id.book_detail_image, imageFragment, "Top");
+        transaction.add(R.id.book_detail_labels, labelsFragment,"Middle");
+        //transaction.add(R.id.book_detail_reviews, reviewsFragment,"Bottom");
 
         transaction.commit();
     }

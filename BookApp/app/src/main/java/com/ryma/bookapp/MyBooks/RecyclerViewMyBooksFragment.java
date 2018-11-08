@@ -14,13 +14,12 @@ import android.widget.Toast;
 
 import com.ryma.bookapp.R;
 import com.ryma.bookapp.RecyclerViewAdapter;
-import com.ryma.bookapp.RecyclerViewFragment;
-import com.ryma.data.DatabaseHandler;
+import com.ryma.database.DatabaseHandler;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import data.Book;
+import domainModels.Book;
 
 public class RecyclerViewMyBooksFragment extends Fragment {
     RecyclerView mRecyclerView;

@@ -10,9 +10,9 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import domainModels.Book;
+import domainModels.Review;
 
-public class RecyclerViewFragment extends Fragment {
+public class RecyclerViewReviewFragment extends Fragment {
 
     RecyclerView mRecyclerView;
     RecyclerView.Adapter mAdapter = null;
@@ -21,23 +21,17 @@ public class RecyclerViewFragment extends Fragment {
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.recyclerview_books_fragment, container, false);
+        View view = inflater.inflate(R.layout.recyclerview_reviews_fragment, container, false);
 
-        mRecyclerView = view.findViewById(R.id.recyclerview_books);
+        mRecyclerView = view.findViewById(R.id.recyclerview_reviews);
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         return view;
     }
 
-
-    public void setBookAdapter(Book[] books) {
-
-        mAdapter = new RecyclerViewAdapter(getActivity(), books);
+    public void setReviewAdapter(Review[] reviews){
+        mAdapter = new RecyclerViewReviewAdapter(getActivity(), reviews);
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-    public interface onFragmentClick{
-        public void onItemSelected();
     }
 }

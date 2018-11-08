@@ -1,4 +1,4 @@
-package com.ryma.data;
+package com.ryma.database;
 
 import android.content.ContentValues;
 import android.content.Context;

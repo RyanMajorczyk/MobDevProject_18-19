@@ -1,6 +1,4 @@
-package data;
-
-import android.media.Image;
+package domainModels;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 

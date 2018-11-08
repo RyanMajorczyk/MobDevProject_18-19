@@ -12,11 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.springframework.http.ResponseEntity;
-
-import java.io.ByteArrayInputStream;
-
-import data.Book;
+import domainModels.Book;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<BookViewHolder> {
     private Book[] books;
