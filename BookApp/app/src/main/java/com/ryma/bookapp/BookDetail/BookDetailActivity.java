@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -16,7 +17,7 @@ import com.ryma.bookapp.MyBooks.MyBooksActivity;
 import com.ryma.bookapp.R;
 import com.ryma.bookapp.RecyclerViewReviewFragment;
 
-public class BookDetailActivity extends FragmentActivity {
+public class BookDetailActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,14 +26,14 @@ public class BookDetailActivity extends FragmentActivity {
 
         BookDetailImageFragment imageFragment = new BookDetailImageFragment();
         BookDetailLabelsFragment labelsFragment = new BookDetailLabelsFragment();
-        //RecyclerViewReviewFragment reviewsFragment = new RecyclerViewReviewFragment();
+        RecyclerViewReviewFragment reviewsFragment = new RecyclerViewReviewFragment();
 
         FragmentManager fragmentManageranager=getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManageranager.beginTransaction();
 
         transaction.add(R.id.book_detail_image, imageFragment, "Top");
         transaction.add(R.id.book_detail_labels, labelsFragment,"Middle");
-        //transaction.add(R.id.book_detail_reviews, reviewsFragment,"Bottom");
+        transaction.add(R.id.book_detail_reviews, reviewsFragment,"Bottom");
 
         transaction.commit();
     }

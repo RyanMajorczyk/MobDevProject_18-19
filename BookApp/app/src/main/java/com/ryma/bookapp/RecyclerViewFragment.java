@@ -15,7 +15,7 @@ import domainModels.Book;
 public class RecyclerViewFragment extends Fragment {
 
     RecyclerView mRecyclerView;
-    RecyclerView.Adapter mAdapter = null;
+    RecyclerViewAdapter mAdapter = null;
     RecyclerView.LayoutManager mLayoutManager;
 
     @Nullable
@@ -23,17 +23,15 @@ public class RecyclerViewFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.recyclerview_books_fragment, container, false);
 
-        mRecyclerView = view.findViewById(R.id.recyclerview_books);
+        mRecyclerView = view.findViewById(R.id.recyclerview_my_books);
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
         return view;
     }
 
-
-    public void setBookAdapter(Book[] books) {
-
-        mAdapter = new RecyclerViewAdapter(getActivity(), books);
+    public void setmAdapter(Book[] books){
+        mAdapter = new RecyclerViewAdapter(getContext(), books);
         mRecyclerView.setAdapter(mAdapter);
     }
 

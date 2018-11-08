@@ -2,8 +2,11 @@ package com.ryma.bookapp;
 
 import android.content.Intent;
 import android.os.AsyncTask;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.RecyclerView;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -23,8 +26,7 @@ import org.springframework.web.client.RestTemplate;
 import domainModels.Book;
 
 public class MainActivity extends AppCompatActivity {
-    Book[] books = null;
-    RecyclerViewFragment recyclerViewFragment = new RecyclerViewFragment();
+    Book[] books;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,15 @@ public class MainActivity extends AppCompatActivity {
         final String URL = "http://81.240.220.38:8090/book";
         new GetAllBooksTask().execute(URL);
 
-        recyclerViewFragment.setBookAdapter(books);
+        RecyclerViewFragment recyclerViewFragment = new RecyclerViewFragment();
+
+        FragmentManager fragmentManager=getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+
+        transaction.add(R.id.master_frame_layout, recyclerViewFragment, "");
+        transaction.commit();
+
+        recyclerViewFragment.setmAdapter(books);
     }
 
 
