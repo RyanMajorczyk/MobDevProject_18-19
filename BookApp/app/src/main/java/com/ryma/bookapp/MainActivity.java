@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -27,15 +28,17 @@ import domainModels.Book;
 
 public class MainActivity extends AppCompatActivity {
     Book[] books;
+    private RecyclerViewFragment recyclerViewFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        recyclerViewFragment = new RecyclerViewFragment();
         final String URL = "http://81.240.220.38:8090/book";
         new GetAllBooksTask().execute(URL);
 
-        RecyclerViewFragment recyclerViewFragment = new RecyclerViewFragment();
+
 
         FragmentManager fragmentManager=getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
@@ -43,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.add(R.id.master_frame_layout, recyclerViewFragment, "");
         transaction.commit();
 
-        recyclerViewFragment.setmAdapter(books);
+
     }
 
 
@@ -92,6 +95,12 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(ResponseEntity<Book[]> result) {
             books = result.getBody();
+
+            try {
+                recyclerViewFragment.setmAdapter(books);
+            } catch (Exception e) {
+                Log.e("Error: ", e.getStackTrace().toString());
+            }
         }
     }
 }
