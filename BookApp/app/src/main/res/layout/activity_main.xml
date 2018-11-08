@@ -9,7 +9,8 @@
 <FrameLayout
     android:id="@+id/master_frame_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"/>
+    android:layout_height="match_parent"
+    android:tag="Master"/>
 
 
 </android.support.constraint.ConstraintLayout>

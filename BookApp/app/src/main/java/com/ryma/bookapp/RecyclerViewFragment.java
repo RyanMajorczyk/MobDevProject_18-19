@@ -1,5 +1,8 @@
 package com.ryma.bookapp;
 
+import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -10,6 +13,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import domainModels.Book;
 
@@ -18,6 +24,13 @@ public class RecyclerViewFragment extends Fragment {
     RecyclerView mRecyclerView;
     RecyclerViewAdapter mAdapter = null;
     RecyclerView.LayoutManager mLayoutManager;
+    private Clicked clicked = null;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        clicked = (Clicked) context;
+    }
 
     @Nullable
     @Override
@@ -31,7 +44,13 @@ public class RecyclerViewFragment extends Fragment {
         return view;
     }
 
-    public void setmAdapter(Book[] books){
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        clicked = null;
+    }
+
+    public void setmAdapter(Book[] books) {
 
         try {
             mAdapter = new RecyclerViewAdapter(getContext(), books);
@@ -39,11 +58,78 @@ public class RecyclerViewFragment extends Fragment {
         } catch (Exception e) {
             Log.e("Error: ", e.getStackTrace().toString());
         }
-
-
     }
 
-    public interface onFragmentClick{
-        public void onItemSelected();
+    public void setListener(Clicked listener) {
+        clicked = listener;
+    }
+
+    public interface Clicked {
+        public void onItemSelected(String bookId);
+    }
+
+    private class RecyclerViewAdapter extends RecyclerView.Adapter<BookViewHolder> {
+        private Book[] books;
+        private Context context;
+
+        public RecyclerViewAdapter(Context context, Book[] allBooks) {
+            this.context = context;
+            books = allBooks;
+        }
+
+        @NonNull
+        @Override
+        public BookViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
+            View v = LayoutInflater.from(context).inflate(R.layout.recyclerview_books_list_item, viewGroup, false);
+            return new BookViewHolder(v);
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull BookViewHolder bookViewHolder, int position) {
+            Book book = books[position];
+            bookViewHolder.setValues(context, book);
+        }
+
+        @Override
+        public int getItemCount() {
+            return books.length;
+        }
+    }
+
+    private class BookViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+        // each data item is just a string in this case
+        TextView mTitleTextView;
+        TextView mAuthorTextView;
+        ImageView mBookImage;
+        Book bookItem;
+
+        BookViewHolder(View itemView) {
+            super(itemView);
+            mTitleTextView = itemView.findViewById(R.id.textView_title);
+            mAuthorTextView = itemView.findViewById(R.id.textView_author);
+            mBookImage = itemView.findViewById(R.id.imageView_cover);
+        }
+
+        public void setValues(Context context, Book book) {
+            bookItem = book;
+            try {
+                mTitleTextView.setText(book.getTitle());
+                mAuthorTextView.setText(book.getAuteur());
+                if (book.getFront_cover() != null) {
+                    Bitmap bitmap = BitmapFactory.decodeByteArray(book.getFront_cover(), 0, book.getFront_cover().length);
+                    //bookViewHolder.mBookImage.setImageBitmap(bitmap);
+                    mBookImage.setImageResource(R.mipmap.book_icon);
+                } else {
+                    mBookImage.setImageResource(R.mipmap.book_icon);
+                }
+            } catch (Exception ex) {
+                Toast.makeText(context, "ImageConversion failed", Toast.LENGTH_SHORT).show();
+            }
+        }
+
+        @Override
+        public void onClick(View v) {
+            clicked.onItemSelected(bookItem.getId().toString());
+        }
     }
 }

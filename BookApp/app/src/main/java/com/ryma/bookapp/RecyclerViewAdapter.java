@@ -14,8 +14,11 @@ import android.widget.Toast;
 
 import domainModels.Book;
 
-public class RecyclerViewAdapter extends RecyclerView.Adapter<BookViewHolder> {
+public class RecyclerViewAdapter  {
+    /*
+    extends RecyclerView.Adapter<BookViewHolder>
     private Book[] books;
+
     private Context context;
 
     public RecyclerViewAdapter(Context context, Book[] allBooks){
@@ -56,20 +59,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<BookViewHolder> {
     @Override
     public int getItemCount() {
         return books.length;
-    }
+    }*/
 }
 
-class BookViewHolder extends RecyclerView.ViewHolder {
-    // each data item is just a string in this case
-    TextView mTitleTextView;
-    TextView mAuthorTextView;
-    ImageView mBookImage;
 
-    BookViewHolder(View itemView) {
-        super(itemView);
-        mTitleTextView = itemView.findViewById(R.id.textView_title);
-        mAuthorTextView = itemView.findViewById(R.id.textView_author);
-        mBookImage = itemView.findViewById(R.id.imageView_cover);
-    }
-}
 

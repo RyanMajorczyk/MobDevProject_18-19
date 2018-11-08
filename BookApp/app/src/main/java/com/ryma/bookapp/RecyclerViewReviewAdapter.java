@@ -15,7 +15,7 @@ public class RecyclerViewReviewAdapter extends RecyclerView.Adapter<ReviewViewHo
     private Review[] reviews;
     private Context context;
 
-    RecyclerViewReviewAdapter(Context context, Review[] reviews) {
+    public RecyclerViewReviewAdapter(Context context, Review[] reviews) {
         this.reviews = reviews;
         this.context = context;
     }

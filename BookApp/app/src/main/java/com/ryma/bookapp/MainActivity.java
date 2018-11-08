@@ -11,10 +11,12 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.widget.FrameLayout;
 
 
 import com.ryma.bookapp.AddBook.AddBookActivity;
 import com.ryma.bookapp.AddReview.AddReviewActivity;
+import com.ryma.bookapp.BookDetail.BookDetailFragment;
 import com.ryma.bookapp.MyBooks.MyBooksActivity;
 
 import org.springframework.http.HttpEntity;
@@ -26,27 +28,54 @@ import org.springframework.web.client.RestTemplate;
 
 import domainModels.Book;
 
-public class MainActivity extends AppCompatActivity {
-    Book[] books;
+public class MainActivity extends AppCompatActivity implements RecyclerViewFragment.Clicked {
+
     private RecyclerViewFragment recyclerViewFragment;
+    private final static String MASTER_TAG = "Master";
+    boolean dualPane;
+    Book[] books;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        recyclerViewFragment = new RecyclerViewFragment();
+
         final String URL = "http://81.240.220.38:8090/book";
         new GetAllBooksTask().execute(URL);
 
 
+        recyclerViewFragment = null;
+        FrameLayout frameLayout = findViewById(R.id.master_frame_layout);
 
-        FragmentManager fragmentManager=getSupportFragmentManager();
-        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        if (frameLayout != null) {
+            dualPane = false;
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
+            recyclerViewFragment = (RecyclerViewFragment) fragmentManager.findFragmentByTag(MASTER_TAG);
+            if (recyclerViewFragment == null) {
+                recyclerViewFragment = new RecyclerViewFragment();
+                transaction.add(R.id.master_frame_layout, recyclerViewFragment, MASTER_TAG);
+            }
+            transaction.commit();
+        } else {
+            dualPane = true;
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
 
-        transaction.add(R.id.master_frame_layout, recyclerViewFragment, "");
-        transaction.commit();
+            recyclerViewFragment = (RecyclerViewFragment) fragmentManager.findFragmentById(R.id.master_frame_layout_landscape);
+            if (recyclerViewFragment == null) {
+                recyclerViewFragment = new RecyclerViewFragment();
+                transaction.add(R.id.master_frame_layout_landscape, recyclerViewFragment);
+            }
 
-
+            BookDetailFragment bookDetailFragment = (BookDetailFragment) fragmentManager.findFragmentById(R.id.detail_frame_layout_landscape);
+            if (bookDetailFragment == null) {
+                bookDetailFragment = new BookDetailFragment();
+                transaction.add(R.id.detail_frame_layout_landscape, bookDetailFragment);
+            }
+            transaction.commit();
+        }
     }
 
 
@@ -76,6 +105,16 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    public void onItemSelected(String bookId) {
+        FrameLayout frameLayout = findViewById(R.id.master_frame_layout);
+        if (frameLayout != null){
+
+        }else{
+            BookDetailFragment bookDetailFragment = new BookDetailFragment();
+        }
+    }
+
     class GetAllBooksTask extends AsyncTask<String, Void, ResponseEntity<Book[]>> {
         @Override
         protected ResponseEntity<Book[]> doInBackground(String... URL) {
@@ -95,7 +134,6 @@ public class MainActivity extends AppCompatActivity {
 
         protected void onPostExecute(ResponseEntity<Book[]> result) {
             books = result.getBody();
-
             try {
                 recyclerViewFragment.setmAdapter(books);
             } catch (Exception e) {
