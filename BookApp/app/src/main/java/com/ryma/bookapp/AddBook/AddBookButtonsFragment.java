@@ -1,5 +1,6 @@
 package com.ryma.bookapp.AddBook;
 
+import android.app.NotificationManager;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.os.AsyncTask;
@@ -67,6 +68,23 @@ public class AddBookButtonsFragment extends Fragment {
             }
         });
 
+
+        setHasOptionsMenu(true);
+        return view;
+    }
+
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        isbn = view.findViewById(R.id.editText_isbn);
+        title = view.findViewById(R.id.editText_title);
+        author = view.findViewById(R.id.editText_author);
+        description = view.findViewById(R.id.editText_description);
+
+        mImage = (ImageView) view.findViewById(R.id.imageView_cover);
+
+        myDatabase = new DatabaseHandler(getActivity().getApplicationContext());
+
+
         Button button = view.findViewById(R.id.button_add_book);
         button.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +103,7 @@ public class AddBookButtonsFragment extends Fragment {
                 }
 
                 if (!isbn.getText().toString().equals("") && !title.getText().toString().equals("")
-                        && !author.getText().toString().equals("") && !description.getText().toString().equals("")  ) {
+                        && !author.getText().toString().equals("") && !description.getText().toString().equals("")) {
                     bookToAdd = new Book(title.getText().toString()
                             , isbn.getText().toString()
                             , author.getText().toString()
@@ -96,25 +114,11 @@ public class AddBookButtonsFragment extends Fragment {
                     new AddBookTask().execute(URL);
 
                 } else {
-                    Toast toast = Toast.makeText(getActivity().getApplicationContext(),"Please fill in all fields",Toast.LENGTH_LONG);
+                    Toast toast = Toast.makeText(getActivity().getApplicationContext(), "Please fill in all fields", Toast.LENGTH_LONG);
                     toast.show();
                 }
             }
         });
-        setHasOptionsMenu(true);
-        return view;
-    }
-
-    @Override
-    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        isbn = view.findViewById(R.id.editText_isbn);
-        title = view.findViewById(R.id.editText_title);
-        author = view.findViewById(R.id.editText_author);
-        description = view.findViewById(R.id.editText_description);
-
-        mImage = (ImageView) view.findViewById(R.id.imageView_cover);
-
-        myDatabase = new DatabaseHandler(getActivity().getApplicationContext());
 
     }
 
@@ -132,8 +136,7 @@ public class AddBookButtonsFragment extends Fragment {
                 HttpEntity<Book> entity = new HttpEntity<>(bookToAdd, headers);
                 ResponseEntity<Book> responseEntity = restTemplate.exchange(url, HttpMethod.PUT, entity, Book.class);
                 return responseEntity;
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 return null;
             }
         }
@@ -173,8 +176,7 @@ public class AddBookButtonsFragment extends Fragment {
                 HttpEntity<byte[]> entity = new HttpEntity<>(image, headers);
                 ResponseEntity<Book> responseEntity = restTemplate.exchange(url, HttpMethod.POST, entity, Book.class);
                 return responseEntity;
-            }
-            catch (Exception ex) {
+            } catch (Exception ex) {
                 return null;
             }
         }
@@ -184,6 +186,7 @@ public class AddBookButtonsFragment extends Fragment {
             Toast.makeText(getActivity().getApplicationContext(), "Image Added!", Toast.LENGTH_LONG).show();
 
             startActivity(new Intent(getActivity().getApplicationContext(), MainActivity.class));
+
 
         }
 
