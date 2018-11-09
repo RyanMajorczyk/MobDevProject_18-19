@@ -66,7 +66,7 @@ public class BookDetailFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.book_detail_fragment, container, false);
 
-        mimageView = view.findViewById(R.id.book_detail_image);
+        mimageView = view.findViewById(R.id.imageView_detail);
         mimageView.setImageResource(R.mipmap.book_icon);
 
         titleContentTextView = view.findViewById(R.id.textView_title_content);
@@ -92,7 +92,7 @@ public class BookDetailFragment extends Fragment {
         return view;
     }
 
-    class GetBookByIdTask extends AsyncTask<String, Void, ResponseEntity<Book[]>> {
+    class GetBookByIdTask extends AsyncTask<String, Void, ResponseEntity<Book>> {
         @Override
         protected ResponseEntity<Book> doInBackground(String... URL) {
             final String url = URL[0];
