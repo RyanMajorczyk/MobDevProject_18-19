@@ -19,4 +19,7 @@
     <string name="isbn">ISBN</string>
     <string name="summary">Summary</string>
     <string name="my_books">My Books</string>
+    <string name="description">Description:</string>
+    <string name="authorDetail">Author:</string>
+    <string name="titleDetail">Title:</string>
 </resources>

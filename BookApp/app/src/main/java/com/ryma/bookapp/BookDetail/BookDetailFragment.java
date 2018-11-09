@@ -38,10 +38,12 @@ public class BookDetailFragment extends Fragment {
     TextView authorContentTextView;
     TextView descriptionContentTextView;
     Book book;
+    private static String bookToUseId;
 
     public static BookDetailFragment newFragment(String bookId){
         Bundle bundle = new Bundle();
         bundle.putString("book_id" ,bookId);
+        bookToUseId = bookId;
         BookDetailFragment bookDetailFragment = new BookDetailFragment();
         bookDetailFragment.setArguments(bundle);
         return bookDetailFragment;
@@ -52,8 +54,13 @@ public class BookDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             String id = getArguments().getString("id");
-            final String URL = "http://81.240.220.38:8090/book/" + 1;
-            new GetBookByIdTask().execute(URL);
+            if (id != null) {
+                final String URL = "http://81.240.220.38:8090/book/" + id;
+                new GetBookByIdTask().execute(URL);
+            } else {
+                final String URL = "http://81.240.220.38:8090/book/" + bookToUseId;
+                new GetBookByIdTask().execute(URL);
+            }
         }
     }
     public void SetValues(Book book) {

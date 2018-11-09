@@ -124,14 +124,18 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
     public void onItemSelected(Book book) {
         FrameLayout frameLayout = findViewById(R.id.master_frame_layout);
         if (frameLayout != null){
+
             Intent intent = new Intent(getBaseContext(), BookDetailActivity.class);
-            intent.putExtra("bookId", book.getId());
+            intent.putExtra("bookId", book.getId().toString());
             startActivity(intent);
+
         }else{
-            BookDetailFragment bookDetailFragment = BookDetailFragment.newFragment(book.getId()+"");
+            BookDetailFragment bookDetailFragment = new BookDetailFragment();
+            bookDetailFragment = BookDetailFragment.newFragment(book.getId().toString());
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.detail_frame_layout_landscape, bookDetailFragment);
+            fragmentTransaction.commit();
         }
     }
 
