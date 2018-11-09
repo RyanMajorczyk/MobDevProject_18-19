@@ -33,9 +33,13 @@ public class BookDetailActivity extends AppCompatActivity {
 
         FragmentManager fragmentManageranager=getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManageranager.beginTransaction();
+        transaction.replace(R.id.book_detail_frame, bookDetailFragment);
 
         transaction.commit();
     }
+
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         MenuInflater findMenuItems = getMenuInflater();

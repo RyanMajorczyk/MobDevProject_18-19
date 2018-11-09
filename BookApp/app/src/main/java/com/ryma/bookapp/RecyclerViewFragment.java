@@ -26,6 +26,16 @@ public class RecyclerViewFragment extends Fragment {
     RecyclerView.LayoutManager mLayoutManager;
     private Clicked clicked = null;
 
+    private Book[] booksInAdapter;
+
+    private final View.OnClickListener mOnClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            int itemPosition = mRecyclerView.getChildLayoutPosition(v);
+            clicked.onItemSelected(booksInAdapter[itemPosition]);
+        }
+    };
+
 
     @Override
     public void onAttach(Context context) {
@@ -52,7 +62,7 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public void setmAdapter(Book[] books) {
-
+        booksInAdapter = books;
         try {
             mAdapter = new RecyclerViewAdapter(getContext(), books);
             mRecyclerView.setAdapter(mAdapter);
@@ -66,7 +76,7 @@ public class RecyclerViewFragment extends Fragment {
     }
 
     public interface Clicked {
-        public void onItemSelected(String bookId);
+        public void onItemSelected(Book book);
     }
 
     private class RecyclerViewAdapter extends RecyclerView.Adapter<BookViewHolder> {
@@ -82,6 +92,7 @@ public class RecyclerViewFragment extends Fragment {
         @Override
         public BookViewHolder onCreateViewHolder(@NonNull ViewGroup viewGroup, int i) {
             View v = LayoutInflater.from(context).inflate(R.layout.recyclerview_books_list_item, viewGroup, false);
+            v.setOnClickListener(mOnClickListener);
             return new BookViewHolder(v);
         }
 
@@ -130,7 +141,7 @@ public class RecyclerViewFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            clicked.onItemSelected(bookItem.getId().toString());
+           // clicked.onItemSelected();
         }
     }
 }

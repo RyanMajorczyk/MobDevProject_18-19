@@ -52,29 +52,22 @@ public class BookDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             String id = getArguments().getString("id");
-            final String URL = "http://81.240.220.38:8090/book" + id;
+            final String URL = "http://81.240.220.38:8090/book/" + 1;
             new GetBookByIdTask().execute(URL);
         }
     }
+    public void SetValues(Book book) {
+        mimageView = getView().findViewById(R.id.imageView_detail);
+        titleContentTextView = getView().findViewById(R.id.textView_title_content);
+        authorContentTextView = getView().findViewById(R.id.textView_author_content);
+        descriptionContentTextView = getView().findViewById(R.id.textView_description_content);
 
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.book_detail_fragment, container, false);
-
-        mimageView = view.findViewById(R.id.book_detail_image);
         mimageView.setImageResource(R.mipmap.book_icon);
-
-        titleContentTextView = view.findViewById(R.id.textView_title_content);
         titleContentTextView.setText(book.getTitle());
-
-        authorContentTextView = view.findViewById(R.id.textView_author_content);
         authorContentTextView.setText(book.getAuteur());
-
-        descriptionContentTextView = view.findViewById(R.id.textView_description_content);
         descriptionContentTextView.setText(book.getDescription());
 
-        mRecyclerView = view.findViewById(R.id.recyclerview_reviews);
+        mRecyclerView = getView().findViewById(R.id.recyclerview_reviews);
         mLayoutManager = new LinearLayoutManager(getActivity(), LinearLayoutManager.VERTICAL, false);
         mRecyclerView.setLayoutManager(mLayoutManager);
         List<Review> reviewList = book.getReviews();
@@ -84,11 +77,15 @@ public class BookDetailFragment extends Fragment {
             RecyclerViewReviewAdapter reviewAdapter = new RecyclerViewReviewAdapter(getContext(), reviews);
             mRecyclerView.setAdapter(reviewAdapter);
         }
-
+    }
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.book_detail_fragment, container, false);
         return view;
     }
 
-    class GetBookByIdTask extends AsyncTask<String, Void, ResponseEntity<Book[]>> {
+    class GetBookByIdTask extends AsyncTask<String, Void, ResponseEntity<Book>> {
         @Override
         protected ResponseEntity<Book> doInBackground(String... URL) {
             final String url = URL[0];
@@ -106,7 +103,12 @@ public class BookDetailFragment extends Fragment {
         }
 
         protected void onPostExecute(ResponseEntity<Book> result) {
-            book = result.getBody();
+            try {
+                book = result.getBody();
+                SetValues(result.getBody());
+            } catch (Exception ex) {
+                ex.printStackTrace();
+            }
         }
     }
 }

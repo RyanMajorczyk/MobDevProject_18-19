@@ -106,7 +106,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
     public void onItemSelected(String bookId) {
         FrameLayout frameLayout = findViewById(R.id.master_frame_layout);
         if (frameLayout != null){
@@ -115,6 +114,21 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
             startActivity(intent);
         }else{
             BookDetailFragment bookDetailFragment = BookDetailFragment.newFragment(bookId);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.detail_frame_layout_landscape, bookDetailFragment);
+        }
+    }
+
+    @Override
+    public void onItemSelected(Book book) {
+        FrameLayout frameLayout = findViewById(R.id.master_frame_layout);
+        if (frameLayout != null){
+            Intent intent = new Intent(getBaseContext(), BookDetailActivity.class);
+            intent.putExtra("bookId", book.getId());
+            startActivity(intent);
+        }else{
+            BookDetailFragment bookDetailFragment = BookDetailFragment.newFragment(book.getId()+"");
             FragmentManager fragmentManager = getSupportFragmentManager();
             FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
             fragmentTransaction.replace(R.id.detail_frame_layout_landscape, bookDetailFragment);
