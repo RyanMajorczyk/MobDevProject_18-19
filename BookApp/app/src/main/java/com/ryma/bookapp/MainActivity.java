@@ -29,7 +29,7 @@ import org.springframework.web.client.RestTemplate;
 
 import domainModels.Book;
 
-public class MainActivity extends AppCompatActivity implements RecyclerViewFragment.AddBookButtonClicked {
+public class MainActivity extends AppCompatActivity implements RecyclerViewFragment.Clicked {
 
     private RecyclerViewFragment recyclerViewFragment;
     private final static String MASTER_TAG = "Master";
@@ -106,23 +106,8 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
         return super.onOptionsItemSelected(item);
     }
 
-    //@Override
-    public void onItemSelected(String bookId) {
-        FrameLayout frameLayout = findViewById(R.id.master_frame_layout);
-        if (frameLayout != null){
-            Intent intent = new Intent(getBaseContext(), BookDetailActivity.class);
-            intent.putExtra("bookId", bookId);
-            startActivity(intent);
-        }else{
-            BookDetailFragment bookDetailFragment = BookDetailFragment.newFragment(bookId);
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.detail_frame_layout_landscape, bookDetailFragment);
-        }
-    }
-
     @Override
-    public void addBookButtonClicked(String bookId) {
+    public void onItemSelected(String bookId) {
         FrameLayout frameLayout = findViewById(R.id.master_frame_layout);
         if (frameLayout != null){
             Intent intent = new Intent(getBaseContext(), BookDetailActivity.class);

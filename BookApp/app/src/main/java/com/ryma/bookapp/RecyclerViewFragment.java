@@ -17,18 +17,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.ryma.bookapp.AddBook.AddBookButtonsFragment;
-
 import domainModels.Book;
 
 public class RecyclerViewFragment extends Fragment {
-
-    AddBookButtonClicked mCallback;
-
-    public interface AddBookButtonClicked {
-        public void addBookButtonClicked(String bookId);
-    }
-
 
     RecyclerView mRecyclerView;
     RecyclerViewAdapter mAdapter = null;
@@ -39,7 +30,7 @@ public class RecyclerViewFragment extends Fragment {
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mCallback = (AddBookButtonClicked) context;
+        clicked = (Clicked) context;
     }
 
     @Nullable
@@ -139,7 +130,7 @@ public class RecyclerViewFragment extends Fragment {
 
         @Override
         public void onClick(View v) {
-            mCallback.addBookButtonClicked(bookItem.getId().toString());
+            clicked.onItemSelected(bookItem.getId().toString());
         }
     }
 }
