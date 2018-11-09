@@ -40,7 +40,6 @@ public class BookDetailFragment extends Fragment {
     TextView titleContentTextView;
     TextView authorContentTextView;
     TextView descriptionContentTextView;
-    Button addReviewButton;
     Book book;
 
     private static String bookToUseId;
@@ -69,7 +68,7 @@ public class BookDetailFragment extends Fragment {
         }
     }
     public void SetValues(final Book book) {
-        addReviewButton = getView().findViewById(R.id.add_review_button);
+        Button addReviewButton = getView().findViewById(R.id.add_review_button);
         addReviewButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

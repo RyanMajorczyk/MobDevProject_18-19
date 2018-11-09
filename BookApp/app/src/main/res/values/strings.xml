@@ -22,4 +22,6 @@
     <string name="description">Description:</string>
     <string name="authorDetail">Author:</string>
     <string name="titleDetail">Title:</string>
+    <string name="reviewname">ReviewName</string>
+    <string name="reviewtext">ReviewText</string>
 </resources>

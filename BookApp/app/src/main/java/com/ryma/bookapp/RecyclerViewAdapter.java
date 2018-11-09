@@ -1,8 +1,6 @@
 package com.ryma.bookapp;
 
 import android.content.Context;
-import android.graphics.Bitmap;
-import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -14,11 +12,8 @@ import android.widget.Toast;
 
 import domainModels.Book;
 
-//import domainModels.Book;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyBookViewHolder> {
-
-
     private Book[] books;
 
     private Context context;
@@ -42,7 +37,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         try {
             if (book.getFront_cover() != null) {
-                Bitmap bitmap = BitmapFactory.decodeByteArray(book.getFront_cover(), 0, book.getFront_cover().length);
+                //Bitmap bitmap = BitmapFactory.decodeByteArray(book.getFront_cover(), 0, book.getFront_cover().length);
                 //bookViewHolder.mBookImage.setImageBitmap(bitmap);
                 myBookViewHolder.mBookImage.setImageResource(R.mipmap.book_icon);
             } else {

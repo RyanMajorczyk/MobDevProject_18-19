@@ -39,14 +39,11 @@ public class RecyclerViewMyBooksFragment extends Fragment {
 
         database = new DatabaseHandler(getContext());
 
-        database.insertData(111,"De jaren van verachting","1-4564-448-451", "Andrej Sapkowski", "De hekser Geralt gaat met Ciri naar Kaer Mohen en traint haar in de vechtkunst van de herksers ...,");
-        database.insertData(112,"Vrouwe van het meer","1-564-448-451", "Andrej Sapkowski", "De hekser Geralt is nog steeds op zoek naar zijn Ciri ...");
-
         try {
             Cursor result = database.getAllBooks();
 
             if (result.getCount() == 0) {
-                Toast.makeText(getActivity(), "No books to show", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "No books to show", Toast.LENGTH_LONG).show();
             }
 
             List<Book> booksList = new ArrayList<>();

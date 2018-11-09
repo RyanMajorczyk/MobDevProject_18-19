@@ -21,7 +21,7 @@ import domainModels.Book;
 
 public class RecyclerViewFragment extends Fragment {
 
-    RecyclerView mRecyclerView;
+    private RecyclerView mRecyclerView;
     RecyclerViewAdapter mAdapter = null;
     RecyclerView.LayoutManager mLayoutManager;
     private Clicked clicked = null;

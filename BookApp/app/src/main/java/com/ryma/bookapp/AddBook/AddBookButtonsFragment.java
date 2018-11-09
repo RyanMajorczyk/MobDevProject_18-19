@@ -32,9 +32,9 @@ public class AddBookButtonsFragment extends Fragment {
 
 
 
-    AddBookButtonClicked mCallback;
+    private AddBookButtonClicked mCallback;
     public interface AddBookButtonClicked {
-        public void addBookButtonClicked(byte[] image);
+        void addBookButtonClicked(byte[] image);
     }
 
     @Nullable
@@ -95,7 +95,6 @@ public class AddBookButtonsFragment extends Fragment {
                 if (bookCoverBitmap != null) {
                     try {
                         Bitmap bmp = bookCoverBitmap;
-
                         ByteArrayOutputStream stream = new ByteArrayOutputStream();
                         bmp.compress(Bitmap.CompressFormat.PNG, 100, stream);
                         image = stream.toByteArray();

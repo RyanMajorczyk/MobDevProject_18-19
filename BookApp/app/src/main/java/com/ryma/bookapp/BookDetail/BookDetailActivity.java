@@ -5,21 +5,16 @@ import android.support.v4.app.FragmentManager;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.ryma.bookapp.AddBook.AddBookActivity;
-import com.ryma.bookapp.AddReview.AddReviewActivity;
 import com.ryma.bookapp.MainActivity;
 import com.ryma.bookapp.MyBooks.MyBooksActivity;
 import com.ryma.bookapp.R;
 
-import domainModels.Book;
-
 public class BookDetailActivity extends AppCompatActivity {
-    String book;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +33,6 @@ public class BookDetailActivity extends AppCompatActivity {
 
         transaction.commit();
     }
-
-
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

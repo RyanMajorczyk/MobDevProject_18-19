@@ -18,8 +18,6 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.ryma.bookapp.AddReview.AddReviewActivity;
-import com.ryma.bookapp.BookDetail.BookDetailFragment;
 import com.ryma.bookapp.MainActivity;
 import com.ryma.bookapp.MyBooks.MyBooksActivity;
 import com.ryma.bookapp.R;
@@ -101,12 +99,11 @@ public class AddBookActivity extends AppCompatActivity implements AddBookButtons
                     , description.getText().toString()
             );
 
-            //bookToAdd = new Book("Boek titel", "ISBN-1234","Author Name","Some Description");
             final String URL = "http://81.240.220.38:8090/book";
             new AddBookTask().execute(URL);
 
         } else {
-            Toast toast = Toast.makeText(getApplicationContext(), "Please fill in all fields", Toast.LENGTH_LONG);
+            Toast toast = Toast.makeText(getApplicationContext(), "Please fill in all fields!", Toast.LENGTH_LONG);
             toast.show();
         }
     }
@@ -146,7 +143,6 @@ public class AddBookActivity extends AppCompatActivity implements AddBookButtons
 
     class AddBookTask extends AsyncTask<String, Void, ResponseEntity<Book>> {
 
-        //Implements method
         @Override
         protected ResponseEntity<Book> doInBackground(String... URL) {
             final String url = URL[0];
@@ -164,18 +160,11 @@ public class AddBookActivity extends AppCompatActivity implements AddBookButtons
         }
 
         protected void onPostExecute(ResponseEntity<Book> result) {
-            HttpStatus status = result.getStatusCode();
             boolean isInserted = false;
             try {
                 isInserted = myDatabase.insertData(result.getBody().getId().intValue(), bookToAdd.getTitle(), bookToAdd.getIsbn(), bookToAdd.getAuteur(), bookToAdd.getDescription());
             } catch (Exception ex) {
                 ex.printStackTrace();
-            }
-            // Can do some checks
-            if (isInserted) {
-                Toast.makeText(getApplicationContext(), "Book Added!", Toast.LENGTH_LONG).show();
-            } else {
-                Toast.makeText(getApplicationContext(), "Locale book save failed!", Toast.LENGTH_LONG).show();
             }
             final String URL = "http://81.240.220.38:8090/book/addCover/" + result.getBody().getId();
 
@@ -206,7 +195,6 @@ public class AddBookActivity extends AppCompatActivity implements AddBookButtons
 
         protected void onPostExecute(ResponseEntity<Book> result) {
             HttpStatus status = result.getStatusCode();
-            Toast.makeText(getApplicationContext(), "Image Added!", Toast.LENGTH_LONG).show();
             SendNotification("Book added", bookToAdd.getTitle());
             startActivity(new Intent(getApplicationContext(), MainActivity.class));
 

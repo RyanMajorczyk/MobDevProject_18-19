@@ -8,7 +8,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.ryma.bookapp.AddBook.AddBookActivity;
-import com.ryma.bookapp.AddReview.AddReviewActivity;
 import com.ryma.bookapp.MainActivity;
 import com.ryma.bookapp.R;
 

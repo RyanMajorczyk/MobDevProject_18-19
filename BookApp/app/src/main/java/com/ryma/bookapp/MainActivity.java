@@ -6,7 +6,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -15,7 +14,6 @@ import android.widget.FrameLayout;
 
 
 import com.ryma.bookapp.AddBook.AddBookActivity;
-import com.ryma.bookapp.AddReview.AddReviewActivity;
 import com.ryma.bookapp.BookDetail.BookDetailActivity;
 import com.ryma.bookapp.BookDetail.BookDetailFragment;
 import com.ryma.bookapp.MyBooks.MyBooksActivity;
@@ -101,20 +99,6 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
                 return true;
         }
         return super.onOptionsItemSelected(item);
-    }
-
-    public void onItemSelected(String bookId) {
-        FrameLayout frameLayout = findViewById(R.id.master_frame_layout);
-        if (frameLayout != null){
-            Intent intent = new Intent(getBaseContext(), BookDetailActivity.class);
-            intent.putExtra("bookId", bookId);
-            startActivity(intent);
-        }else{
-            BookDetailFragment bookDetailFragment = BookDetailFragment.newFragment(bookId);
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-            fragmentTransaction.replace(R.id.detail_frame_layout_landscape, bookDetailFragment);
-        }
     }
 
     @Override
