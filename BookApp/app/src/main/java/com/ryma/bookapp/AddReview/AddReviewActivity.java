@@ -13,11 +13,15 @@ import com.ryma.bookapp.MyBooks.MyBooksActivity;
 import com.ryma.bookapp.R;
 
 public class AddReviewActivity extends AppCompatActivity {
-
+    private String bookId;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_review);
+
+        bookId = getIntent().getStringExtra("bookId");
+
+
     }
 
     @Override
@@ -35,9 +39,6 @@ public class AddReviewActivity extends AppCompatActivity {
                 return true;
             case R.id.nav_addBook:
                 startActivity(new Intent(this, AddBookActivity.class));
-                return true;
-            case R.id.nav_AddReview:
-                startActivity(new Intent(this, AddReviewActivity.class));
                 return true;
             case R.id.nav_MyBooks:
                 startActivity(new Intent(this, MyBooksActivity.class));

@@ -72,8 +72,8 @@ public class RecyclerViewMyBooksFragment extends Fragment {
 
     private void setBookAdapter(Book[] result) {
         try {
-           // mAdapter = new RecyclerViewAdapter(getActivity() ,result);
-           // mRecyclerView.setAdapter(mAdapter);
+            mAdapter = new RecyclerViewAdapter(getActivity() ,result);
+            mRecyclerView.setAdapter(mAdapter);
         } catch (Exception e) {
             e.printStackTrace();
         }

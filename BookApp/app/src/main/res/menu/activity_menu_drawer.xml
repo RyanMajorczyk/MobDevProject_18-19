@@ -13,10 +13,6 @@
             android:icon="@mipmap/add_book_icon"
             android:title="@string/add_book" />
         <item
-            android:id="@+id/nav_AddReview"
-            android:icon="@mipmap/add_book_icon"
-            android:title="@string/add_review" />
-        <item
             android:id="@+id/nav_MyBooks"
             android:icon="@mipmap/my_books_icon"
             android:title="@string/my_books" />

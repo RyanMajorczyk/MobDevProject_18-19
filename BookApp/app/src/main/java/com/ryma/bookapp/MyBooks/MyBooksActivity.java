@@ -36,9 +36,6 @@ public class MyBooksActivity extends AppCompatActivity {
             case R.id.nav_addBook:
                 startActivity(new Intent(this, AddBookActivity.class));
                 return true;
-            case R.id.nav_AddReview:
-                startActivity(new Intent(this, AddReviewActivity.class));
-                return true;
             case R.id.nav_MyBooks:
                 startActivity(new Intent(this, MyBooksActivity.class));
                 return true;

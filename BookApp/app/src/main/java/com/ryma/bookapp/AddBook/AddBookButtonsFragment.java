@@ -50,7 +50,7 @@ public class AddBookButtonsFragment extends Fragment {
                     Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
                     startActivityForResult(intent, CAMERA_PIC_REQUEST);
                 } catch (Exception ex) {
-                    Log.e("Camera failure: ", ex.getStackTrace().toString());
+                    Toast.makeText(getContext(), "NO PERMISSION", Toast.LENGTH_SHORT).show();
                 }
             }
         });

@@ -19,6 +19,7 @@ import android.widget.EditText;
 import android.widget.Toast;
 
 import com.ryma.bookapp.AddReview.AddReviewActivity;
+import com.ryma.bookapp.BookDetail.BookDetailFragment;
 import com.ryma.bookapp.MainActivity;
 import com.ryma.bookapp.MyBooks.MyBooksActivity;
 import com.ryma.bookapp.R;
@@ -51,20 +52,6 @@ public class AddBookActivity extends AppCompatActivity implements AddBookButtons
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_add_book);
-
-        // Code voor pushnotifictations
-        try {
-            NotificationManager notifi = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-            Notification notify = new Notification.Builder(getApplicationContext())
-                    .setContentTitle("Book added")
-                    .setContentText("BOOK DATA")
-                    .setSmallIcon(R.drawable.ic_launcher_foreground)
-                    .build();
-            notify.flags |= Notification.FLAG_AUTO_CANCEL;
-            notifi.notify(0, notify);
-        } catch (Exception ex) {
-            ex.printStackTrace();
-        }
         initializeVariables();
     }
 
@@ -149,9 +136,6 @@ public class AddBookActivity extends AppCompatActivity implements AddBookButtons
                 return true;
             case R.id.nav_addBook:
                 startActivity(new Intent(this, AddBookActivity.class));
-                return true;
-            case R.id.nav_AddReview:
-                startActivity(new Intent(this, AddReviewActivity.class));
                 return true;
             case R.id.nav_MyBooks:
                 startActivity(new Intent(this, MyBooksActivity.class));

@@ -1,5 +1,6 @@
 package com.ryma.bookapp.BookDetail;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -10,9 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.ryma.bookapp.AddReview.AddReviewActivity;
 import com.ryma.bookapp.R;
 import com.ryma.bookapp.RecyclerViewAdapter;
 import com.ryma.bookapp.RecyclerViewReviewAdapter;
@@ -37,7 +40,9 @@ public class BookDetailFragment extends Fragment {
     TextView titleContentTextView;
     TextView authorContentTextView;
     TextView descriptionContentTextView;
+    Button addReviewButton;
     Book book;
+
     private static String bookToUseId;
 
     public static BookDetailFragment newFragment(String bookId){
@@ -63,7 +68,16 @@ public class BookDetailFragment extends Fragment {
             }
         }
     }
-    public void SetValues(Book book) {
+    public void SetValues(final Book book) {
+        addReviewButton = getView().findViewById(R.id.add_review_button);
+        addReviewButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getContext(), AddReviewActivity.class);
+                intent.putExtra("bookId", book.getId().toString());
+                startActivity(intent);
+            }
+        });
         mimageView = getView().findViewById(R.id.imageView_detail);
         titleContentTextView = getView().findViewById(R.id.textView_title_content);
         authorContentTextView = getView().findViewById(R.id.textView_author_content);
