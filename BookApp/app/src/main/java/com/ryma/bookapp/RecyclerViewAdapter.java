@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import domainModels.Book;
+//import domainModels.Book;
 
 public class RecyclerViewAdapter  {
     /*

@@ -16,6 +16,7 @@ import android.widget.FrameLayout;
 
 import com.ryma.bookapp.AddBook.AddBookActivity;
 import com.ryma.bookapp.AddReview.AddReviewActivity;
+import com.ryma.bookapp.BookDetail.BookDetailActivity;
 import com.ryma.bookapp.BookDetail.BookDetailFragment;
 import com.ryma.bookapp.MyBooks.MyBooksActivity;
 
@@ -109,9 +110,14 @@ public class MainActivity extends AppCompatActivity implements RecyclerViewFragm
     public void onItemSelected(String bookId) {
         FrameLayout frameLayout = findViewById(R.id.master_frame_layout);
         if (frameLayout != null){
-
+            Intent intent = new Intent(getBaseContext(), BookDetailActivity.class);
+            intent.putExtra("bookId", bookId);
+            startActivity(intent);
         }else{
-            BookDetailFragment bookDetailFragment = new BookDetailFragment();
+            BookDetailFragment bookDetailFragment = BookDetailFragment.newFragment(bookId);
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+            fragmentTransaction.replace(R.id.detail_frame_layout_landscape, bookDetailFragment);
         }
     }
 

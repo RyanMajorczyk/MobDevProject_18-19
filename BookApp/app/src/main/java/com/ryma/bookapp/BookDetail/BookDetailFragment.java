@@ -18,6 +18,7 @@ import android.widget.TextView;
 import com.ryma.bookapp.MainActivity;
 import com.ryma.bookapp.R;
 import com.ryma.bookapp.RecyclerViewAdapter;
+import com.ryma.bookapp.RecyclerViewFragment;
 import com.ryma.bookapp.RecyclerViewReviewAdapter;
 
 import org.springframework.http.HttpEntity;
@@ -41,6 +42,14 @@ public class BookDetailFragment extends Fragment {
     TextView authorContentTextView;
     TextView descriptionContentTextView;
     Book book;
+
+    public static BookDetailFragment newFragment(String bookId){
+        Bundle bundle = new Bundle();
+        bundle.putString("book_id" ,bookId);
+        BookDetailFragment bookDetailFragment = new BookDetailFragment();
+        bookDetailFragment.setArguments(bundle);
+        return bookDetailFragment;
+    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {

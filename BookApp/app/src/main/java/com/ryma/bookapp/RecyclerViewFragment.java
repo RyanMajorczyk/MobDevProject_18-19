@@ -26,6 +26,7 @@ public class RecyclerViewFragment extends Fragment {
     RecyclerView.LayoutManager mLayoutManager;
     private Clicked clicked = null;
 
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);

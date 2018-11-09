@@ -18,7 +18,7 @@ import com.ryma.bookapp.R;
 import domainModels.Book;
 
 public class BookDetailActivity extends AppCompatActivity {
-    Book book;
+    String book;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +26,7 @@ public class BookDetailActivity extends AppCompatActivity {
         setContentView(R.layout.activity_book_detail);
 
         Bundle bundle = new Bundle();
-        bundle.putString("id", book.getId().toString());
+        bundle.putString("id", getIntent().getStringExtra("bookId"));
 
         BookDetailFragment bookDetailFragment = new BookDetailFragment();
         bookDetailFragment.setArguments(bundle);
